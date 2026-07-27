@@ -1,4 +1,5 @@
 import { cookies, headers } from "next/headers";
+import { env } from "cloudflare:workers";
 
 export type CloudflareUser = {
   displayName: string;
@@ -17,7 +18,6 @@ type EditorEnvironment = {
 };
 
 async function getEditorPassword(): Promise<string | null> {
-  const { env } = await import("cloudflare:workers");
   const password = (env as unknown as EditorEnvironment).EDITOR_PASSWORD;
   return typeof password === "string" && password.length >= 12
     ? password
