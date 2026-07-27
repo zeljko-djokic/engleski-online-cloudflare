@@ -223,6 +223,7 @@ export function Editor({
             <Field label="Telefon — prikaz" value={content.global.phoneDisplay} onChange={(value) => updateContent((draft) => { draft.global.phoneDisplay = value; })} />
             <Field label="Telefon — link" value={content.global.phoneLink} onChange={(value) => updateContent((draft) => { draft.global.phoneLink = value; })} hint="Bez razmaka, npr. +381631234567" />
             <Field label="WhatsApp link" value={content.global.whatsappUrl} onChange={(value) => updateContent((draft) => { draft.global.whatsappUrl = value; })} />
+            <Field label="Viber link" value={content.global.viberUrl} onChange={(value) => updateContent((draft) => { draft.global.viberUrl = value; })} hint="Format: viber://chat?number=%2B381..." />
             <Field label="LinkedIn link" value={content.global.linkedinUrl} onChange={(value) => updateContent((draft) => { draft.global.linkedinUrl = value; })} />
             <Field label="Google Calendar link" value={content.global.calendarUrl} onChange={(value) => updateContent((draft) => { draft.global.calendarUrl = value; })} hint="Ostavite prazno dok link nije spreman." />
             <Field label="Tekst dugmeta kalendara" value={content.global.calendarLabel} onChange={(value) => updateContent((draft) => { draft.global.calendarLabel = value; })} />
@@ -259,6 +260,7 @@ export function Editor({
             <Field label="Navigacija — kontakt" value={content.labels.navigationContact} onChange={(value) => updateContent((draft) => { draft.labels.navigationContact = value; })} />
             <Field label="Dugme u zaglavlju" value={content.labels.headerCta} onChange={(value) => updateContent((draft) => { draft.labels.headerCta = value; })} />
             <Field label="Mobilna traka — WhatsApp" value={content.labels.mobileCtaWhatsApp} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaWhatsApp = value; })} />
+            <Field label="Mobilna traka — Viber" value={content.labels.mobileCtaViber} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaViber = value; })} />
             <Field label="Mobilna traka — zakazivanje" value={content.labels.mobileCtaBooking} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaBooking = value; })} />
             <Field label="Mobilni meni" value={content.labels.mobileMenu} onChange={(value) => updateContent((draft) => { draft.labels.mobileMenu = value; })} />
             <Field label="Rečnik — vrsta reči" value={content.labels.dictionaryPartOfSpeech} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryPartOfSpeech = value; })} />
@@ -561,6 +563,7 @@ export function Editor({
             <Field label="Uvod" value={content.contact.intro} multiline onChange={(value) => updateContent((draft) => { draft.contact.intro = value; })} />
             <Field label="Mejl — oznaka" value={content.contact.emailLabel} onChange={(value) => updateContent((draft) => { draft.contact.emailLabel = value; })} />
             <Field label="WhatsApp — oznaka" value={content.contact.whatsappLabel} onChange={(value) => updateContent((draft) => { draft.contact.whatsappLabel = value; })} />
+            <Field label="Viber — oznaka" value={content.contact.viberLabel} onChange={(value) => updateContent((draft) => { draft.contact.viberLabel = value; })} />
             <Field label="Telefon — oznaka" value={content.contact.phoneLabel} onChange={(value) => updateContent((draft) => { draft.contact.phoneLabel = value; })} />
           </div>
         </EditorSection>

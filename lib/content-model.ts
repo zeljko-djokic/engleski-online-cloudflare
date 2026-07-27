@@ -71,6 +71,7 @@ export type SiteContent = {
     phoneDisplay: string;
     phoneLink: string;
     whatsappUrl: string;
+    viberUrl: string;
     linkedinUrl: string;
     calendarUrl: string;
     calendarLabel: string;
@@ -87,6 +88,7 @@ export type SiteContent = {
     headerCta: string;
     mobileMenu: string;
     mobileCtaWhatsApp: string;
+    mobileCtaViber: string;
     mobileCtaBooking: string;
     dictionaryPartOfSpeech: string;
     dictionaryWord: string;
@@ -193,13 +195,14 @@ export type SiteContent = {
     intro: string;
     emailLabel: string;
     whatsappLabel: string;
+    viberLabel: string;
     phoneLabel: string;
     calendarPlaceholder: string;
   };
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 5,
+  schemaVersion: 6,
   seo: {
     pageTitle: "Online časovi engleskog jezika | Željko Đokić",
     metaDescription:
@@ -216,6 +219,7 @@ export const defaultContent: SiteContent = {
     phoneLink: "+381637394618",
     whatsappUrl:
       "https://wa.me/381637394618?text=Zdravo%20%C5%BDeljko%2C%20javljam%20se%20u%20vezi%20sa%20uslugama%20sa%20sajta.",
+    viberUrl: "viber://chat?number=%2B381637394618",
     linkedinUrl: "https://www.linkedin.com/in/%C5%BEeljko-%C4%91oki%C4%87/",
     calendarUrl: "",
     calendarLabel: "Zakažite termin preko Google kalendara",
@@ -232,6 +236,7 @@ export const defaultContent: SiteContent = {
     headerCta: "Zakažite razgovor",
     mobileMenu: "Meni",
     mobileCtaWhatsApp: "WhatsApp",
+    mobileCtaViber: "Viber",
     mobileCtaBooking: "Zakažite razgovor",
     dictionaryPartOfSpeech: "noun",
     dictionaryWord: "language",
@@ -724,6 +729,7 @@ export const defaultContent: SiteContent = {
       "Odgovoriću vam sa predlogom programa, mogućim terminima i svim informacijama potrebnim za početak.",
     emailLabel: "Pošaljite mejl",
     whatsappLabel: "WhatsApp",
+    viberLabel: "Viber",
     phoneLabel: "Telefon",
     calendarPlaceholder: "Google Calendar link biće dostupan ovde",
   },

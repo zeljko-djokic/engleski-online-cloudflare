@@ -63,6 +63,10 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 5;
   }
 
+  if (version < 6) {
+    source.schemaVersion = 6;
+  }
+
   return source;
 }
 

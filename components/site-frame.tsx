@@ -115,6 +115,11 @@ export function ContactSection({ content }: { content: SiteContent }) {
             <strong>{global.phoneDisplay}</strong>
             <Arrow />
           </a>
+          <a href={global.viberUrl}>
+            <span>{contact.viberLabel}</span>
+            <strong>{global.phoneDisplay}</strong>
+            <Arrow />
+          </a>
           <a href={`tel:${global.phoneLink}`}>
             <span>{contact.phoneLabel}</span>
             <strong>{global.phoneDisplay}</strong>
@@ -146,6 +151,10 @@ export function SiteFooter({ content }: { content: SiteContent }) {
         <a href={global.whatsappUrl} target="_blank" rel="noreferrer">
           <span aria-hidden="true">◉</span>
           {labels.mobileCtaWhatsApp}
+        </a>
+        <a href={global.viberUrl}>
+          <span aria-hidden="true">◇</span>
+          {labels.mobileCtaViber}
         </a>
         <a
           className="mobile-sticky-primary"
