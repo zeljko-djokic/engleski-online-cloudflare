@@ -1,4 +1,10 @@
-import { Arrow, ContactSection, SiteFooter, SiteHeader } from "@/components/site-frame";
+import {
+  Arrow,
+  ContactSection,
+  ExamBadge,
+  SiteFooter,
+  SiteHeader,
+} from "@/components/site-frame";
 import type { SiteContent } from "@/lib/content-model";
 
 type CatalogCard = {
@@ -7,6 +13,7 @@ type CatalogCard = {
   title: string;
   text: string;
   meta?: string;
+  badgeSlug?: string;
 };
 
 export function CatalogIndex({
@@ -35,7 +42,15 @@ export function CatalogIndex({
           <div className="shell catalog-grid">
             {cards.map((card, index) => (
               <a className="catalog-card" href={card.href} key={card.href}>
-                <span>{card.label || String(index + 1).padStart(2, "0")}</span>
+                {card.badgeSlug ? (
+                  <ExamBadge
+                    slug={card.badgeSlug}
+                    label={card.label}
+                    title={card.title}
+                  />
+                ) : (
+                  <span>{card.label || String(index + 1).padStart(2, "0")}</span>
+                )}
                 <h2>{card.title}</h2>
                 <p>{card.text}</p>
                 {card.meta && <strong>{card.meta}</strong>}

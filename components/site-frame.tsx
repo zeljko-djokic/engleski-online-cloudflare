@@ -9,6 +9,34 @@ export function Arrow() {
   );
 }
 
+export function ExamBadge({
+  slug,
+  label,
+  title,
+}: {
+  slug: string;
+  label: string;
+  title: string;
+}) {
+  const family = slug.startsWith("c1-") || slug.startsWith("c2-")
+    ? "cambridge"
+    : slug.startsWith("ielts")
+      ? "ielts"
+      : slug.startsWith("toefl")
+        ? "toefl"
+        : "sat";
+  const monogram = family === "cambridge"
+    ? title.startsWith("C2") ? "C2" : "C1"
+    : family.toUpperCase();
+
+  return (
+    <span className={`exam-badge exam-badge-${family}`} aria-label={`${title} priprema`}>
+      <strong aria-hidden="true">{monogram}</strong>
+      <span>{family === "cambridge" ? "Cambridge English" : label}</span>
+    </span>
+  );
+}
+
 export function SiteHeader({ content }: { content: SiteContent }) {
   const { labels } = content;
   return (
@@ -99,16 +127,36 @@ export function ContactSection({ content }: { content: SiteContent }) {
 }
 
 export function SiteFooter({ content }: { content: SiteContent }) {
-  const { labels } = content;
+  const { global, labels } = content;
+  const bookingUrl = global.calendarUrl || "/#kontakt";
+  const bookingIsExternal = Boolean(global.calendarUrl);
+
   return (
-    <footer className="site-footer">
-      <div className="shell">
-        <Link className="wordmark" href="/">
-          {labels.brandName}
-        </Link>
-        <p>{labels.footerTagline}</p>
-        <p>{labels.footerCopyright}</p>
-      </div>
-    </footer>
+    <>
+      <footer className="site-footer">
+        <div className="shell">
+          <Link className="wordmark" href="/">
+            {labels.brandName}
+          </Link>
+          <p>{labels.footerTagline}</p>
+          <p>{labels.footerCopyright}</p>
+        </div>
+      </footer>
+      <nav className="mobile-sticky-cta" aria-label="Brzi kontakt">
+        <a href={global.whatsappUrl} target="_blank" rel="noreferrer">
+          <span aria-hidden="true">◉</span>
+          {labels.mobileCtaWhatsApp}
+        </a>
+        <a
+          className="mobile-sticky-primary"
+          href={bookingUrl}
+          target={bookingIsExternal ? "_blank" : undefined}
+          rel={bookingIsExternal ? "noreferrer" : undefined}
+        >
+          {labels.mobileCtaBooking}
+          <Arrow />
+        </a>
+      </nav>
+    </>
   );
 }

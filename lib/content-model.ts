@@ -42,8 +42,30 @@ export type FaqItem = {
   answer: string;
 };
 
+export type TestimonialSectionContent = {
+  eyebrow: string;
+  headline: string;
+  intro: string;
+  emptyMessage: string;
+  formTitle: string;
+  formIntro: string;
+  nameLabel: string;
+  contextLabel: string;
+  quoteLabel: string;
+  consentLabel: string;
+  submitLabel: string;
+  successMessage: string;
+};
+
 export type SiteContent = {
   schemaVersion: number;
+  seo: {
+    pageTitle: string;
+    metaDescription: string;
+    shareTitle: string;
+    shareDescription: string;
+    shareImageAlt: string;
+  };
   global: {
     email: string;
     phoneDisplay: string;
@@ -64,6 +86,8 @@ export type SiteContent = {
     navigationContact: string;
     headerCta: string;
     mobileMenu: string;
+    mobileCtaWhatsApp: string;
+    mobileCtaBooking: string;
     dictionaryPartOfSpeech: string;
     dictionaryWord: string;
     dictionaryPronunciation: string;
@@ -161,6 +185,7 @@ export type SiteContent = {
     languageServiceDescription: string;
     duration: string;
   };
+  testimonials: TestimonialSectionContent;
   faq: FaqItem[];
   contact: {
     eyebrow: string;
@@ -174,7 +199,17 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 2,
+  schemaVersion: 5,
+  seo: {
+    pageTitle: "Online časovi engleskog jezika | Željko Đokić",
+    metaDescription:
+      "Individualni online časovi engleskog, priprema međunarodnih ispita, prevođenje, lektura i korektura — Željko Đokić, master filolog anglista.",
+    shareTitle: "Engleski Online — Željko Đokić",
+    shareDescription:
+      "Individualni online časovi, priprema međunarodnih ispita i stručne jezičke usluge prilagođene vašem cilju.",
+    shareImageAlt:
+      "Engleski Online — individualna nastava, međunarodni ispiti i jezičke usluge Željka Đokića",
+  },
   global: {
     email: "zeljko.d.djokic@gmail.com",
     phoneDisplay: "+381 63 73 94 618",
@@ -196,6 +231,8 @@ export const defaultContent: SiteContent = {
     navigationContact: "Kontakt",
     headerCta: "Zakažite razgovor",
     mobileMenu: "Meni",
+    mobileCtaWhatsApp: "WhatsApp",
+    mobileCtaBooking: "Zakažite razgovor",
     dictionaryPartOfSpeech: "noun",
     dictionaryWord: "language",
     dictionaryPronunciation: "/ˈlæŋɡwɪdʒ/",
@@ -639,6 +676,24 @@ export const defaultContent: SiteContent = {
     languageServiceDescription:
       "Prema 250 reči, uz ponudu pre početka rada.",
     duration: "60 minuta",
+  },
+  testimonials: {
+    eyebrow: "Utisci polaznika i klijenata",
+    headline: "Vaše iskustvo može pomoći sledećem polazniku.",
+    intro:
+      "Utisci se objavljuju isključivo uz saglasnost autora i tek nakon provere.",
+    emptyMessage:
+      "Ako ste pohađali časove ili koristili jezičke usluge, možete prvi podeliti svoje iskustvo.",
+    formTitle: "Podelite svoje iskustvo",
+    formIntro:
+      "Napišite kratak i iskren utisak. Biće objavljen tek nakon odobrenja.",
+    nameLabel: "Ime ili inicijali",
+    contextLabel: "Kurs ili usluga (opciono)",
+    quoteLabel: "Vaš utisak",
+    consentLabel:
+      "Saglasan/na sam da moj utisak i navedeno ime budu javno objavljeni.",
+    submitLabel: "Pošaljite utisak",
+    successMessage: "Hvala! Vaš utisak je poslat i čeka odobrenje.",
   },
   faq: [
     {

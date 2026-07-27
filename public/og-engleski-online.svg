@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Engleski Online — Željko Đokić</title>
+  <desc id="description">Individualna nastava, međunarodni ispiti i jezičke usluge.</desc>
+  <rect width="1200" height="630" fill="#f4efe6"/>
+  <path d="M0 0h18v630H0z" fill="#3559b7"/>
+  <path d="M0 564h1200v66H0z" fill="#12263a"/>
+  <circle cx="1010" cy="188" r="188" fill="#e7e0d5"/>
+  <circle cx="1010" cy="188" r="138" fill="none" stroke="#3559b7" stroke-width="2" opacity=".35"/>
+  <text x="1004" y="260" text-anchor="middle" fill="#3559b7" opacity=".18" font-family="Georgia, serif" font-size="250">A</text>
+  <text x="1085" y="305" text-anchor="middle" fill="#d76b4b" opacity=".28" font-family="Georgia, serif" font-size="145">g</text>
+  <text x="84" y="90" fill="#3559b7" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="5">ONLINE NASTAVA I JEZIČKE USLUGE</text>
+  <text x="80" y="235" fill="#12263a" font-family="Georgia, serif" font-size="94" letter-spacing="-4">Engleski Online</text>
+  <text x="84" y="300" fill="#12263a" font-family="Arial, sans-serif" font-size="30">Individualna nastava · Međunarodni ispiti</text>
+  <text x="84" y="345" fill="#12263a" font-family="Arial, sans-serif" font-size="30">Prevođenje · Lektura i korektura</text>
+  <line x1="84" y1="402" x2="690" y2="402" stroke="#b7b1a8" stroke-width="2"/>
+  <text x="84" y="459" fill="#3559b7" font-family="Arial, sans-serif" font-size="26" font-weight="700">Željko Đokić</text>
+  <text x="84" y="500" fill="#5e6b76" font-family="Arial, sans-serif" font-size="24">master filolog anglista · 13+ godina iskustva</text>
+  <text x="84" y="606" fill="#f4efe6" font-family="Arial, sans-serif" font-size="23" font-weight="700">engleski-online.zeljko-d-djokic.workers.dev</text>
+  <g transform="translate(898 442)">
+    <rect x="0" y="0" width="90" height="52" rx="26" fill="#dfe7ff" stroke="#93a9e8"/>
+    <text x="45" y="34" text-anchor="middle" fill="#3559b7" font-family="Arial, sans-serif" font-size="20" font-weight="800">C1/C2</text>
+    <rect x="104" y="0" width="90" height="52" rx="26" fill="#ffe6dc" stroke="#e9a691"/>
+    <text x="149" y="34" text-anchor="middle" fill="#b74c36" font-family="Arial, sans-serif" font-size="18" font-weight="800">IELTS</text>
+    <rect x="0" y="66" width="90" height="52" rx="26" fill="#dff0ea" stroke="#8db9aa"/>
+    <text x="45" y="100" text-anchor="middle" fill="#2b6a60" font-family="Arial, sans-serif" font-size="17" font-weight="800">TOEFL</text>
+    <rect x="104" y="66" width="90" height="52" rx="26" fill="#eee5fb" stroke="#b7a1d6"/>
+    <text x="149" y="100" text-anchor="middle" fill="#654d91" font-family="Arial, sans-serif" font-size="20" font-weight="800">SAT</text>
+  </g>
+</svg>

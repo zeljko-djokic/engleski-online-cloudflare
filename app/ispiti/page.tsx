@@ -20,6 +20,7 @@ export default async function ExamsPage() {
         label: exam.label,
         title: exam.title,
         text: exam.summary,
+        badgeSlug: exam.slug,
       }))}
     />
   );

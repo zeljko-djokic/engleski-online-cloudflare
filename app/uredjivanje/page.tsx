@@ -7,6 +7,7 @@ import {
 import { Editor } from "@/app/uredjivanje/editor";
 import { LoginForm } from "@/app/uredjivanje/login-form";
 import { getSiteContent } from "@/lib/site-content";
+import { getAllTestimonials } from "@/lib/testimonials";
 
 export const dynamic = "force-dynamic";
 
@@ -32,9 +33,15 @@ export default async function EditingPage() {
     );
   }
 
+  const [content, testimonials] = await Promise.all([
+    getSiteContent(),
+    getAllTestimonials(),
+  ]);
+
   return (
     <Editor
-      initialContent={await getSiteContent()}
+      initialContent={content}
+      initialTestimonials={testimonials}
       userEmail={user.email}
       signOutPath={cloudflareSignOutPath()}
     />

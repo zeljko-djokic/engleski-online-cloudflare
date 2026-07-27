@@ -35,7 +35,32 @@ function migrateLegacyContent(value: unknown): unknown {
       });
     }
 
-    source.schemaVersion = 2;
+  }
+
+  if (version < 3) {
+    const defaultSat = defaultContent.exams.find((exam) => exam.slug === "sat");
+    const savedExams = Array.isArray(source.exams) ? source.exams : [];
+    const hasSat = savedExams.some(
+      (item) =>
+        item &&
+        typeof item === "object" &&
+        !Array.isArray(item) &&
+        (item as Record<string, unknown>).slug === "sat",
+    );
+
+    if (!hasSat && defaultSat) {
+      source.exams = [...savedExams, structuredClone(defaultSat)];
+    }
+
+    source.schemaVersion = 3;
+  }
+
+  if (version < 4) {
+    source.schemaVersion = 4;
+  }
+
+  if (version < 5) {
+    source.schemaVersion = 5;
   }
 
   return source;

@@ -8,6 +8,7 @@ import type {
   Program,
   SiteContent,
 } from "@/lib/content-model";
+import type { TestimonialRecord } from "@/lib/testimonials";
 
 function Field({
   label,
@@ -94,16 +95,22 @@ function EditorSection({
 
 export function Editor({
   initialContent,
+  initialTestimonials,
   userEmail,
   signOutPath,
 }: {
   initialContent: SiteContent;
+  initialTestimonials: TestimonialRecord[];
   userEmail: string;
   signOutPath: string;
 }) {
   const [content, setContent] = useState<SiteContent>(initialContent);
+  const [testimonials, setTestimonials] =
+    useState<TestimonialRecord[]>(initialTestimonials);
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [reviewingId, setReviewingId] = useState<number | null>(null);
+  const [reviewMessage, setReviewMessage] = useState("");
 
   const markChanged = () => {
     setStatus("idle");
@@ -148,6 +155,42 @@ export function Editor({
   const setFaq = (index: number, faq: FaqItem) =>
     updateContent((draft) => { draft.faq[index] = faq; });
 
+  const moderateTestimonial = async (
+    id: number,
+    action: "approve" | "reject" | "delete",
+  ) => {
+    setReviewingId(id);
+    setReviewMessage("Čuvanje odluke...");
+    try {
+      const response = await fetch("/api/admin/testimonials", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id, action }),
+      });
+      const result = (await response.json()) as {
+        testimonials?: TestimonialRecord[];
+        error?: string;
+      };
+      if (!response.ok || !result.testimonials) {
+        throw new Error(result.error ?? "Promena nije uspela.");
+      }
+      setTestimonials(result.testimonials);
+      setReviewMessage(
+        action === "approve"
+          ? "Utisak je odobren i objavljen."
+          : action === "reject"
+            ? "Utisak je povučen sa sajta."
+            : "Utisak je trajno obrisan.",
+      );
+    } catch (error) {
+      setReviewMessage(
+        error instanceof Error ? error.message : "Promena nije uspela.",
+      );
+    } finally {
+      setReviewingId(null);
+    }
+  };
+
   return (
     <main className="editor-shell">
       <header className="editor-header">
@@ -169,6 +212,7 @@ export function Editor({
         <a href="#kursevi-urednik">Kursevi</a>
         <a href="#ispiti-urednik">Ispiti</a>
         <a href="#usluge-urednik">Usluge</a>
+        <a href="#utisci-urednik">Utisci</a>
         <a href="#faq-urednik">FAQ</a>
       </nav>
 
@@ -183,6 +227,18 @@ export function Editor({
             <Field label="Google Calendar link" value={content.global.calendarUrl} onChange={(value) => updateContent((draft) => { draft.global.calendarUrl = value; })} hint="Ostavite prazno dok link nije spreman." />
             <Field label="Tekst dugmeta kalendara" value={content.global.calendarLabel} onChange={(value) => updateContent((draft) => { draft.global.calendarLabel = value; })} />
             <Field label="Tekst rezervisanog mesta" value={content.contact.calendarPlaceholder} onChange={(value) => updateContent((draft) => { draft.contact.calendarPlaceholder = value; })} />
+          </div>
+        </EditorSection>
+        <EditorSection
+          title="Prikaz linka na Viberu i WhatsAppu"
+          description="Naslov i opis koji se prikazuju kada podelite adresu sajta"
+        >
+          <div className="editor-grid">
+            <Field label="Naslov stranice" value={content.seo.pageTitle} onChange={(value) => updateContent((draft) => { draft.seo.pageTitle = value; })} />
+            <Field label="Opis za pretraživače" value={content.seo.metaDescription} multiline onChange={(value) => updateContent((draft) => { draft.seo.metaDescription = value; })} />
+            <Field label="Naslov deljenog linka" value={content.seo.shareTitle} onChange={(value) => updateContent((draft) => { draft.seo.shareTitle = value; })} />
+            <Field label="Opis deljenog linka" value={content.seo.shareDescription} multiline onChange={(value) => updateContent((draft) => { draft.seo.shareDescription = value; })} />
+            <Field label="Opis slike za deljenje" value={content.seo.shareImageAlt} multiline onChange={(value) => updateContent((draft) => { draft.seo.shareImageAlt = value; })} />
           </div>
         </EditorSection>
       </div>
@@ -202,6 +258,8 @@ export function Editor({
             <Field label="Navigacija — o meni" value={content.labels.navigationAbout} onChange={(value) => updateContent((draft) => { draft.labels.navigationAbout = value; })} />
             <Field label="Navigacija — kontakt" value={content.labels.navigationContact} onChange={(value) => updateContent((draft) => { draft.labels.navigationContact = value; })} />
             <Field label="Dugme u zaglavlju" value={content.labels.headerCta} onChange={(value) => updateContent((draft) => { draft.labels.headerCta = value; })} />
+            <Field label="Mobilna traka — WhatsApp" value={content.labels.mobileCtaWhatsApp} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaWhatsApp = value; })} />
+            <Field label="Mobilna traka — zakazivanje" value={content.labels.mobileCtaBooking} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaBooking = value; })} />
             <Field label="Mobilni meni" value={content.labels.mobileMenu} onChange={(value) => updateContent((draft) => { draft.labels.mobileMenu = value; })} />
             <Field label="Rečnik — vrsta reči" value={content.labels.dictionaryPartOfSpeech} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryPartOfSpeech = value; })} />
             <Field label="Rečnik — reč" value={content.labels.dictionaryWord} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryWord = value; })} />
@@ -402,6 +460,97 @@ export function Editor({
             <ListField label="Tok saradnje" value={service.process} onChange={(value) => setService(index, { ...service, process: value })} />
           </EditorSection>
         ))}
+      </div>
+
+      <div id="utisci-urednik">
+        <EditorSection
+          title="Utisci polaznika i klijenata"
+          description="Tekst sekcije i odobravanje utisaka poslatih preko sajta"
+          open
+        >
+          <div className="editor-grid">
+            <Field label="Nadnaslov" value={content.testimonials.eyebrow} onChange={(value) => updateContent((draft) => { draft.testimonials.eyebrow = value; })} />
+            <Field label="Naslov" value={content.testimonials.headline} multiline onChange={(value) => updateContent((draft) => { draft.testimonials.headline = value; })} />
+            <Field label="Uvod" value={content.testimonials.intro} multiline onChange={(value) => updateContent((draft) => { draft.testimonials.intro = value; })} />
+            <Field label="Poruka kada još nema utisaka" value={content.testimonials.emptyMessage} multiline onChange={(value) => updateContent((draft) => { draft.testimonials.emptyMessage = value; })} />
+            <Field label="Naslov formulara" value={content.testimonials.formTitle} onChange={(value) => updateContent((draft) => { draft.testimonials.formTitle = value; })} />
+            <Field label="Uvod formulara" value={content.testimonials.formIntro} multiline onChange={(value) => updateContent((draft) => { draft.testimonials.formIntro = value; })} />
+            <Field label="Polje za ime" value={content.testimonials.nameLabel} onChange={(value) => updateContent((draft) => { draft.testimonials.nameLabel = value; })} />
+            <Field label="Polje za kurs ili uslugu" value={content.testimonials.contextLabel} onChange={(value) => updateContent((draft) => { draft.testimonials.contextLabel = value; })} />
+            <Field label="Polje za utisak" value={content.testimonials.quoteLabel} onChange={(value) => updateContent((draft) => { draft.testimonials.quoteLabel = value; })} />
+            <Field label="Tekst saglasnosti" value={content.testimonials.consentLabel} multiline onChange={(value) => updateContent((draft) => { draft.testimonials.consentLabel = value; })} />
+            <Field label="Tekst dugmeta" value={content.testimonials.submitLabel} onChange={(value) => updateContent((draft) => { draft.testimonials.submitLabel = value; })} />
+            <Field label="Poruka nakon slanja" value={content.testimonials.successMessage} multiline onChange={(value) => updateContent((draft) => { draft.testimonials.successMessage = value; })} />
+          </div>
+
+          <div className="editor-testimonial-review">
+            <div className="editor-review-heading">
+              <h3>Pristigli utisci</h3>
+              <p>
+                Na sajtu se prikazuju samo odobreni utisci. Odbijeni ostaju u
+                evidenciji dok ih ne obrišete.
+              </p>
+            </div>
+            {reviewMessage && (
+              <p className="editor-review-message" role="status">
+                {reviewMessage}
+              </p>
+            )}
+            {testimonials.length > 0 ? (
+              testimonials.map((testimonial) => (
+                <article className="editor-testimonial-card" key={testimonial.id}>
+                  <div>
+                    <p className={`editor-testimonial-status ${testimonial.status}`}>
+                      {testimonial.status === "pending"
+                        ? "Čeka odobrenje"
+                        : testimonial.status === "approved"
+                          ? "Objavljen"
+                          : "Odbijen"}
+                    </p>
+                    <blockquote>“{testimonial.quote}”</blockquote>
+                    <p>
+                      <strong>{testimonial.name}</strong>
+                      {testimonial.context && ` · ${testimonial.context}`}
+                    </p>
+                    <small>Poslato: {testimonial.createdAt.slice(0, 10)}</small>
+                  </div>
+                  <div className="editor-testimonial-actions">
+                    {testimonial.status !== "approved" && (
+                      <button
+                        type="button"
+                        onClick={() => moderateTestimonial(testimonial.id, "approve")}
+                        disabled={reviewingId === testimonial.id}
+                      >
+                        Odobri i objavi
+                      </button>
+                    )}
+                    {testimonial.status !== "rejected" && (
+                      <button
+                        type="button"
+                        onClick={() => moderateTestimonial(testimonial.id, "reject")}
+                        disabled={reviewingId === testimonial.id}
+                      >
+                        {testimonial.status === "approved" ? "Povuci sa sajta" : "Odbij"}
+                      </button>
+                    )}
+                    <button
+                      className="danger"
+                      type="button"
+                      onClick={() => moderateTestimonial(testimonial.id, "delete")}
+                      disabled={reviewingId === testimonial.id}
+                    >
+                      Obriši
+                    </button>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <p className="editor-review-empty">
+                Još nema utisaka poslatih preko sajta.
+              </p>
+            )}
+          </div>
+        </EditorSection>
       </div>
 
       <div id="faq-urednik">

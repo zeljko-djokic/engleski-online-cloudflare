@@ -1,10 +1,117 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Arrow, ContactSection, SiteFooter, SiteHeader } from "@/components/site-frame";
+import {
+  Arrow,
+  ContactSection,
+  ExamBadge,
+  SiteFooter,
+  SiteHeader,
+} from "@/components/site-frame";
+import { TestimonialForm } from "@/app/testimonial-form";
+import type { SiteContent } from "@/lib/content-model";
 import { getSiteContent } from "@/lib/site-content";
+import { getApprovedTestimonials } from "@/lib/testimonials";
+
+const SITE_URL = "https://engleski-online.zeljko-d-djokic.workers.dev";
+
+function extractEuroPrice(value: string): string | undefined {
+  return value.replace(",", ".").match(/\d+(?:\.\d+)?/)?.[0];
+}
+
+function buildStructuredData(content: SiteContent) {
+  const personId = `${SITE_URL}/#zeljko-djokic`;
+  const organizationId = `${SITE_URL}/#organization`;
+  const graph: Array<Record<string, unknown>> = [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: content.labels.brandName,
+      description: content.seo.metaDescription,
+      inLanguage: "sr-Latn",
+      publisher: { "@id": organizationId },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Željko Đokić",
+      url: SITE_URL,
+      email: content.global.email,
+      telephone: content.global.phoneLink,
+      jobTitle: "Master filolog anglista i nastavnik engleskog jezika",
+      sameAs: [content.global.linkedinUrl],
+      knowsLanguage: ["sr", "en"],
+    },
+    {
+      "@type": "EducationalOrganization",
+      "@id": organizationId,
+      name: content.labels.brandName,
+      url: SITE_URL,
+      email: content.global.email,
+      telephone: content.global.phoneLink,
+      founder: { "@id": personId },
+      areaServed: "Online",
+    },
+  ];
+
+  content.programs.forEach((program) => {
+    const price = extractEuroPrice(program.price);
+    graph.push({
+      "@type": "Course",
+      "@id": `${SITE_URL}/kursevi/${program.slug}#course`,
+      name: program.title,
+      description: program.summary,
+      url: `${SITE_URL}/kursevi/${program.slug}`,
+      inLanguage: "sr-Latn",
+      provider: { "@id": organizationId },
+      ...(price
+        ? {
+            offers: {
+              "@type": "Offer",
+              price,
+              priceCurrency: "EUR",
+              availability: "https://schema.org/InStock",
+            },
+          }
+        : {}),
+    });
+  });
+
+  content.services.forEach((service) => {
+    const price = extractEuroPrice(service.price);
+    graph.push({
+      "@type": "Service",
+      "@id": `${SITE_URL}/usluge/${service.slug}#service`,
+      name: service.title,
+      description: service.summary,
+      url: `${SITE_URL}/usluge/${service.slug}`,
+      serviceType: service.title,
+      areaServed: "Online",
+      provider: { "@id": organizationId },
+      ...(price
+        ? {
+            offers: {
+              "@type": "Offer",
+              price,
+              priceCurrency: "EUR",
+              availability: "https://schema.org/InStock",
+            },
+          }
+        : {}),
+    });
+  });
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
+}
 
 export default async function Home() {
-  const content = await getSiteContent();
+  const [content, testimonials] = await Promise.all([
+    getSiteContent(),
+    getApprovedTestimonials(),
+  ]);
   const { global, hero, home, about, pricing, labels } = content;
   const translationService = content.services.find(
     (service) => service.slug === "prevodjenje",
@@ -12,9 +119,16 @@ export default async function Home() {
   const proofreadingService = content.services.find(
     (service) => service.slug === "lektura-korektura-redaktura",
   );
+  const structuredData = buildStructuredData(content);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</gu, "\\u003c"),
+        }}
+      />
       <SiteHeader content={content} />
       <main id="sadrzaj">
         <section className="hero shell" id="pocetna">
@@ -105,9 +219,13 @@ export default async function Home() {
               </Link>
             </div>
             <div className="exam-list">
-              {content.exams.slice(0, 4).map((exam) => (
+              {content.exams.map((exam) => (
                 <a href={`/ispiti/${exam.slug}`} key={exam.slug}>
-                  <span>{exam.label}</span>
+                  <ExamBadge
+                    slug={exam.slug}
+                    label={exam.label}
+                    title={exam.title}
+                  />
                   <h3>{exam.title}</h3>
                   <p>{exam.summary}</p>
                 </a>
@@ -181,6 +299,38 @@ export default async function Home() {
           </div>
         </section>
 
+        <section className="section testimonials-section" id="utisci">
+          <div className="shell">
+            <div className="testimonials-heading">
+              <p className="eyebrow">{content.testimonials.eyebrow}</p>
+              <h2>{content.testimonials.headline}</h2>
+              <p>{content.testimonials.intro}</p>
+            </div>
+            <div className="testimonials-layout">
+              <div className="testimonial-list" aria-live="polite">
+                {testimonials.length > 0 ? (
+                  testimonials.map((testimonial) => (
+                    <figure className="testimonial-card" key={testimonial.id}>
+                      <blockquote>“{testimonial.quote}”</blockquote>
+                      <figcaption>
+                        <strong>{testimonial.name}</strong>
+                        {testimonial.context && (
+                          <span>{testimonial.context}</span>
+                        )}
+                      </figcaption>
+                    </figure>
+                  ))
+                ) : (
+                  <p className="testimonials-empty">
+                    {content.testimonials.emptyMessage}
+                  </p>
+                )}
+              </div>
+              <TestimonialForm content={content.testimonials} />
+            </div>
+          </div>
+        </section>
+
         <section className="section pricing-section" id="cenovnik">
           <div className="shell">
             <div className="section-heading pricing-heading">
@@ -219,7 +369,7 @@ export default async function Home() {
                 <h3>{pricing.groupDiscount}</h3>
                 <p>{pricing.groupDescription}</p>
               </article>
-              <article className="price-card">
+              <article className="price-card featured-price">
                 <p>{labels.pricingServicesLabel}</p>
                 <div className="price-pairs service-summary-prices">
                   {translationService && (
