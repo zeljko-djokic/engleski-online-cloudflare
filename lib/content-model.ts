@@ -202,7 +202,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 6,
+  schemaVersion: 7,
   seo: {
     pageTitle: "Online časovi engleskog jezika | Željko Đokić",
     metaDescription:
@@ -219,7 +219,8 @@ export const defaultContent: SiteContent = {
     phoneLink: "+381637394618",
     whatsappUrl:
       "https://wa.me/381637394618?text=Zdravo%20%C5%BDeljko%2C%20javljam%20se%20u%20vezi%20sa%20uslugama%20sa%20sajta.",
-    viberUrl: "viber://chat?number=%2B381637394618",
+    viberUrl:
+      "viber://chat?number=%2B381637394618&text=Zdravo%20%C5%BDeljko%2C%20javljam%20se%20u%20vezi%20sa%20uslugama%20sa%20sajta.",
     linkedinUrl: "https://www.linkedin.com/in/%C5%BEeljko-%C4%91oki%C4%87/",
     calendarUrl: "",
     calendarLabel: "Zakažite termin preko Google kalendara",

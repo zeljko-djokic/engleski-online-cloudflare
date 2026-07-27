@@ -67,6 +67,21 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 6;
   }
 
+  if (version < 7) {
+    if (
+      source.global &&
+      typeof source.global === "object" &&
+      !Array.isArray(source.global)
+    ) {
+      source.global = {
+        ...(source.global as Record<string, unknown>),
+        viberUrl: defaultContent.global.viberUrl,
+      };
+    }
+
+    source.schemaVersion = 7;
+  }
+
   return source;
 }
 

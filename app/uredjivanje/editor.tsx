@@ -223,7 +223,7 @@ export function Editor({
             <Field label="Telefon — prikaz" value={content.global.phoneDisplay} onChange={(value) => updateContent((draft) => { draft.global.phoneDisplay = value; })} />
             <Field label="Telefon — link" value={content.global.phoneLink} onChange={(value) => updateContent((draft) => { draft.global.phoneLink = value; })} hint="Bez razmaka, npr. +381631234567" />
             <Field label="WhatsApp link" value={content.global.whatsappUrl} onChange={(value) => updateContent((draft) => { draft.global.whatsappUrl = value; })} />
-            <Field label="Viber link" value={content.global.viberUrl} onChange={(value) => updateContent((draft) => { draft.global.viberUrl = value; })} hint="Format: viber://chat?number=%2B381..." />
+            <Field label="Viber link" value={content.global.viberUrl} onChange={(value) => updateContent((draft) => { draft.global.viberUrl = value; })} hint="Format: viber://chat?number=%2B381...&text=Vaša%20poruka" />
             <Field label="LinkedIn link" value={content.global.linkedinUrl} onChange={(value) => updateContent((draft) => { draft.global.linkedinUrl = value; })} />
             <Field label="Google Calendar link" value={content.global.calendarUrl} onChange={(value) => updateContent((draft) => { draft.global.calendarUrl = value; })} hint="Ostavite prazno dok link nije spreman." />
             <Field label="Tekst dugmeta kalendara" value={content.global.calendarLabel} onChange={(value) => updateContent((draft) => { draft.global.calendarLabel = value; })} />
