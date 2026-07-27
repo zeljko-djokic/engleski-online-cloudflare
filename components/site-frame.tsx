@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { SiteContent } from "@/lib/content-model";
+import { ViberLink } from "@/components/viber-link";
 
 export function Arrow() {
   return (
@@ -117,11 +118,11 @@ export function ContactSection({ content }: { content: SiteContent }) {
             <strong>{global.phoneDisplay}</strong>
             <Arrow />
           </a>
-          <a href={global.viberUrl}>
+          <ViberLink href={global.viberUrl}>
             <span>{contact.viberLabel}</span>
             <strong>{global.phoneDisplay}</strong>
             <Arrow />
-          </a>
+          </ViberLink>
           <a href={`tel:${global.phoneLink}`}>
             <span>{contact.phoneLabel}</span>
             <strong>{global.phoneDisplay}</strong>
@@ -154,10 +155,10 @@ export function SiteFooter({ content }: { content: SiteContent }) {
           <span aria-hidden="true">◉</span>
           {labels.mobileCtaWhatsApp}
         </a>
-        <a href={global.viberUrl}>
+        <ViberLink href={global.viberUrl}>
           <span aria-hidden="true">◇</span>
           {labels.mobileCtaViber}
-        </a>
+        </ViberLink>
         <a
           className="mobile-sticky-primary"
           href={bookingUrl}

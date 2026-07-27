@@ -1576,7 +1576,7 @@ summary:focus-visible {
   transform: translateY(-4px);
 }
 
-.catalog-card > span {
+.catalog-card > span:not(.exam-badge) {
   color: var(--cobalt);
   font-size: 0.78rem;
   font-weight: 800;
@@ -1600,7 +1600,7 @@ summary:focus-visible {
   color: var(--muted);
 }
 
-.catalog-card strong {
+.catalog-card > strong {
   display: block;
   margin-top: 22px;
   color: var(--cobalt);
