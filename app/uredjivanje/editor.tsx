@@ -254,7 +254,7 @@ export function Editor({
             <Field label="Link za preskakanje navigacije" value={content.labels.skipLink} onChange={(value) => updateContent((draft) => { draft.labels.skipLink = value; })} />
             <Field label="Navigacija — početna" value={content.labels.navigationHome} onChange={(value) => updateContent((draft) => { draft.labels.navigationHome = value; })} />
             <Field label="Navigacija — kursevi" value={content.labels.navigationCourses} onChange={(value) => updateContent((draft) => { draft.labels.navigationCourses = value; })} />
-            <Field label="Navigacija — ispiti" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
+            <Field label="Navigacija — međunarodni ispiti" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
             <Field label="Navigacija — usluge" value={content.labels.navigationServices} onChange={(value) => updateContent((draft) => { draft.labels.navigationServices = value; })} />
             <Field label="Navigacija — o meni" value={content.labels.navigationAbout} onChange={(value) => updateContent((draft) => { draft.labels.navigationAbout = value; })} />
             <Field label="Navigacija — utisci" value={content.labels.navigationTestimonials} onChange={(value) => updateContent((draft) => { draft.labels.navigationTestimonials = value; })} />
@@ -345,7 +345,7 @@ export function Editor({
               ["programsEyebrow", "Kursevi — nadnaslov"],
               ["programsHeadline", "Kursevi — naslov"],
               ["programsIntro", "Kursevi — uvod"],
-              ["examsEyebrow", "Ispiti — nadnaslov"],
+              ["examsEyebrow", "Međunarodni ispiti — nadnaslov"],
               ["examsHeadline", "Ispiti — naslov"],
               ["examsIntro", "Ispiti — uvod"],
               ["servicesEyebrow", "Usluge — nadnaslov"],

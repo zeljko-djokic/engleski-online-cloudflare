@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { DetailPage } from "@/components/catalog-pages";
 import { getSiteContent } from "@/lib/site-content";
 
@@ -16,6 +16,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CourseDetailPage({ params }: Props) {
   const { slug } = await params;
+  if (slug === "priprema-ispita") redirect("/ispiti");
+
   const content = await getSiteContent();
   const program = content.programs.find((item) => item.slug === slug);
   if (!program) notFound();

@@ -4,7 +4,8 @@ import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: "Online kursevi engleskog | Engleski Online",
-  description: "Individualni programi opšteg, poslovnog i stručnog engleskog, kao i priprema međunarodnih ispita.",
+  description:
+    "Individualni programi opšteg, poslovnog i stručnog engleskog, prilagođeni vašem nivou, cilju i rasporedu.",
 };
 
 export default async function CoursesPage() {

@@ -3,7 +3,7 @@ import { CatalogIndex } from "@/components/catalog-pages";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Priprema međunarodnih ispita | Engleski Online",
+  title: "Međunarodni ispiti | Engleski Online",
   description: "Individualna priprema za Cambridge C1 i C2, IELTS, TOEFL i SAT English.",
 };
 

@@ -101,6 +101,46 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 9;
   }
 
+  if (version < 10) {
+    if (Array.isArray(source.programs)) {
+      source.programs = source.programs.filter(
+        (item) =>
+          !(
+            item &&
+            typeof item === "object" &&
+            !Array.isArray(item) &&
+            (item as Record<string, unknown>).slug === "priprema-ispita"
+          ),
+      );
+    }
+
+    if (
+      source.labels &&
+      typeof source.labels === "object" &&
+      !Array.isArray(source.labels)
+    ) {
+      source.labels = {
+        ...(source.labels as Record<string, unknown>),
+        navigationExams: defaultContent.labels.navigationExams,
+        examsAllCta: defaultContent.labels.examsAllCta,
+        examBackLabel: defaultContent.labels.examBackLabel,
+      };
+    }
+
+    if (
+      source.home &&
+      typeof source.home === "object" &&
+      !Array.isArray(source.home)
+    ) {
+      source.home = {
+        ...(source.home as Record<string, unknown>),
+        examsEyebrow: defaultContent.home.examsEyebrow,
+      };
+    }
+
+    source.schemaVersion = 10;
+  }
+
   return source;
 }
 

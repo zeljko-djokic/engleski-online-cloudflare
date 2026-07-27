@@ -203,7 +203,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 9,
+  schemaVersion: 10,
   seo: {
     pageTitle: "Online časovi engleskog jezika | Željko Đokić",
     metaDescription:
@@ -231,7 +231,7 @@ export const defaultContent: SiteContent = {
     skipLink: "Pređite na glavni sadržaj",
     navigationHome: "Početna",
     navigationCourses: "Kursevi",
-    navigationExams: "Ispiti",
+    navigationExams: "Međunarodni ispiti",
     navigationServices: "Jezičke usluge",
     navigationAbout: "O meni",
     navigationTestimonials: "Utisci",
@@ -250,7 +250,7 @@ export const defaultContent: SiteContent = {
       "Fleksibilni termini",
       "Materijali uključeni",
     ],
-    examsAllCta: "Pogledajte sve pripreme",
+    examsAllCta: "Pogledajte sve međunarodne ispite",
     serviceNote:
       "Konačna ponuda zavisi od obima, složenosti i roka. Dokumenti se pregledaju pre potvrde cene, a sadržaj se tretira poverljivo.",
     aboutMark: "ŽĐ",
@@ -280,7 +280,7 @@ export const defaultContent: SiteContent = {
     servicePriceLabel: "Cena",
     serviceIncludesTitle: "Usluga obuhvata",
     serviceProcessTitle: "Kako izgleda saradnja",
-    examBackLabel: "Sve pripreme",
+    examBackLabel: "Svi međunarodni ispiti",
     examPriceLabel: "Cena individualnog časa",
     examFocusTitle: "Na čemu radimo",
     examFormatTitle: "Kako izgleda priprema",
@@ -445,37 +445,6 @@ export const defaultContent: SiteContent = {
         "Program zasnovan na vašoj stručnoj oblasti",
         "Udžbenici, članci, studije slučaja i autentična dokumentacija",
         "Mogućnost rada sa sopstvenim materijalima",
-      ],
-    },
-    {
-      slug: "priprema-ispita",
-      number: "04",
-      title: "Priprema ispita",
-      summary:
-        "Strategija, veštine, probni zadaci i precizne povratne informacije za međunarodno priznate ispite.",
-      meta: "CAE · CPE · IELTS · TOEFL · SAT",
-      price: "17 €",
-      eyebrow: "Međunarodni ispiti",
-      headline: "Priprema zasnovana na cilju, roku i stvarnom formatu ispita.",
-      intro:
-        "Priprema objedinjuje razvoj jezika, razumevanje kriterijuma ocenjivanja, strategije za svaki tip zadatka i redovan rad u uslovima sličnim ispitnim.",
-      audience: [
-        "Kandidati za Cambridge C1 Advanced i C2 Proficiency",
-        "Kandidati kojima je potreban IELTS ili TOEFL za studije i rad",
-        "Učenici koji se pripremaju za SAT English",
-        "Polaznici sa konkretnim rokom i ciljnim rezultatom",
-      ],
-      outcomes: [
-        "Jasno razumevanje strukture i kriterijuma ispita",
-        "Efikasnije upravljanje vremenom",
-        "Precizna povratna informacija za govor i pisanje",
-        "Redovno praćenje napretka kroz probne zadatke",
-      ],
-      format: [
-        "Individualni online čas od 60 minuta",
-        "Početna dijagnostika i plan do ispita",
-        "Zvanični i pažljivo odabrani pripremni materijali",
-        "Probni testovi i analiza rezultata",
       ],
     },
   ],

@@ -77,6 +77,31 @@ function buildStructuredData(content: SiteContent) {
     });
   });
 
+  const examPreparationPrice = extractEuroPrice(
+    content.pricing.specializedLessonPrice,
+  );
+  content.exams.forEach((exam) => {
+    graph.push({
+      "@type": "Course",
+      "@id": `${SITE_URL}/ispiti/${exam.slug}#course`,
+      name: `Priprema za ${exam.title}`,
+      description: exam.summary,
+      url: `${SITE_URL}/ispiti/${exam.slug}`,
+      inLanguage: "sr-Latn",
+      provider: { "@id": organizationId },
+      ...(examPreparationPrice
+        ? {
+            offers: {
+              "@type": "Offer",
+              price: examPreparationPrice,
+              priceCurrency: "EUR",
+              availability: "https://schema.org/InStock",
+            },
+          }
+        : {}),
+    });
+  });
+
   content.services.forEach((service) => {
     const price = extractEuroPrice(service.price);
     graph.push({
