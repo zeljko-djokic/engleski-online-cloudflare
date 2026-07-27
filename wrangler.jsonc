@@ -14,7 +14,7 @@
     {
       "binding": "DB",
       "database_name": "engleski-online-content",
-      "database_id": "00000000-0000-4000-8000-000000000000",
+      "database_id": "0d236934-4e00-4807-b00f-5c1011a44ba5",
       "migrations_dir": "drizzle"
     }
   ]
