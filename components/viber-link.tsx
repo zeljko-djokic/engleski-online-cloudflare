@@ -1,39 +1,47 @@
-"use client";
-
 import type { ReactNode } from "react";
 
-function getViberLinkParts(href: string) {
+const DEFAULT_MESSAGE =
+  "Zdravo Željko, javljam se u vezi sa uslugama sa sajta.";
+
+function getViberBusinessHref(href: string) {
+  const value = href.trim();
+  const normalizedValue = /^viber\.me\//i.test(value)
+    ? `https://${value}`
+    : value;
+
   try {
-    const url = new URL(href);
-    const message = url.searchParams.get("text")?.trim() || "";
+    const url = new URL(normalizedValue);
 
-    // Viber does not reliably support the text parameter on personal-chat
-    // links. Keep it only as the editable message source and launch the clean
-    // contact link so the app opens without waiting for an async clipboard call.
-    url.searchParams.delete("text");
+    if (url.protocol === "https:" && url.hostname === "viber.me") {
+      if (!url.searchParams.get("draft")) {
+        url.searchParams.set(
+          "draft",
+          url.searchParams.get("text")?.trim() || DEFAULT_MESSAGE,
+        );
+        url.searchParams.delete("text");
+      }
 
-    return {
-      message,
-      launchHref: url.toString(),
-    };
+      return url.toString();
+    }
+
+    if (url.protocol === "viber:") {
+      const number = (url.searchParams.get("number") || "").replace(/\D/g, "");
+      const message =
+        url.searchParams.get("draft")?.trim() ||
+        url.searchParams.get("text")?.trim() ||
+        DEFAULT_MESSAGE;
+
+      if (number) {
+        const businessUrl = new URL(`https://viber.me/${number}`);
+        businessUrl.searchParams.set("draft", message);
+        return businessUrl.toString();
+      }
+    }
   } catch {
-    return {
-      message: "",
-      launchHref: href,
-    };
+    return normalizedValue;
   }
-}
 
-function copyWithTextarea(message: string) {
-  const textarea = document.createElement("textarea");
-  textarea.value = message;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  textarea.remove();
+  return normalizedValue;
 }
 
 export function ViberLink({
@@ -43,25 +51,10 @@ export function ViberLink({
   href: string;
   children: ReactNode;
 }) {
-  const { launchHref, message } = getViberLinkParts(href);
-
-  function handleClick() {
-    if (!message) return;
-
-    // Run synchronously inside the user's click. The anchor's normal action
-    // then opens Viber immediately, preserving the browser's user activation.
-    try {
-      copyWithTextarea(message);
-    } catch {
-      void navigator.clipboard?.writeText(message).catch(() => undefined);
-    }
-  }
-
   return (
     <a
-      href={launchHref}
-      onClick={handleClick}
-      title="Pripremljena poruka će biti kopirana — nalepite je u Viber razgovor."
+      href={getViberBusinessHref(href)}
+      title="Otvorite razgovor sa Engleski Online na Viberu."
     >
       {children}
     </a>
