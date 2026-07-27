@@ -25,6 +25,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       title={service.headline}
       intro={service.intro}
       price={{ label: content.labels.servicePriceLabel, value: `${service.price} ${service.unit}` }}
+      asideText={service.asideText}
       backHref="/usluge"
       backLabel={content.labels.serviceBackLabel}
       sections={[

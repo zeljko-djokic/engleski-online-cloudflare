@@ -33,6 +33,7 @@ export type LanguageService = {
   unit: string;
   headline: string;
   intro: string;
+  asideText: string;
   includes: string[];
   process: string[];
 };
@@ -203,7 +204,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 10,
+  schemaVersion: 11,
   seo: {
     pageTitle: "Online časovi engleskog jezika | Željko Đokić",
     metaDescription:
@@ -572,6 +573,8 @@ export const defaultContent: SiteContent = {
       headline: "Prevod koji zvuči prirodno i čuva stručni smisao izvornika.",
       intro:
         "Pisano prevođenje sa srpskog na engleski i sa engleskog na srpski, uz terminološku doslednost, jezičku reviziju i tehničku obradu dokumenta.",
+      asideText:
+        "Prevodilačka strana obračunava se na 250 reči gotovog dokumenta. Broj strana dobija se deljenjem ukupnog broja reči sa 250, npr. 7.000 reči iznosi 28 prevodilačkih strana.",
       includes: [
         "Poslovna korespondencija, CV i propratna pisma",
         "Medicinska i farmaceutska dokumentacija",
@@ -596,6 +599,8 @@ export const defaultContent: SiteContent = {
       headline: "Jasan, dosledan i profesionalno oblikovan tekst.",
       intro:
         "Nivo intervencije dogovara se prema stanju dokumenta i njegovoj nameni — od završne korekture do dublje stilske i strukturne redakture.",
+      asideText:
+        "Kod tekstualnih usluga obračun se vezuje za 250 reči gotovog teksta. Pre potvrde cene pregleda se obim, složenost i nivo potrebne intervencije.",
       includes: [
         "Lektura gramatike, pravopisa i interpunkcije",
         "Korektura slovnih, tehničkih i tipografskih grešaka",
@@ -620,6 +625,8 @@ export const defaultContent: SiteContent = {
       headline: "Pouzdana jezička podrška u razgovoru i profesionalnom susretu.",
       intro:
         "Konsekutivno i simultano prevođenje prilagođeno temi, učesnicima i formatu događaja, uz prethodnu terminološku pripremu.",
+      asideText:
+        "Za usmeno prevođenje cena zavisi od trajanja, formata, potrebne pripreme, tehničkih uslova i broja prevodilaca po jezičkoj kombinaciji.",
       includes: [
         "Poslovni razgovori i sastanci",
         "Stručne obuke i prezentacije",
@@ -627,10 +634,10 @@ export const defaultContent: SiteContent = {
         "Online i dogovoreni događaji uživo",
       ],
       process: [
-        "Dogovor o temi, formatu i trajanju",
-        "Dostavljanje materijala za pripremu",
-        "Terminološka priprema",
-        "Prevođenje u dogovoreno vreme",
+        "Dogovor o temi, formatu, trajanju i potrebnom broju prevodilaca",
+        "Za događaje duže od 60 do 90 minuta preporučuje se dvočlani tim po jezičkoj kombinaciji, sa smenama na 15 do 30 minuta radi očuvanja tačnosti.",
+        "Materijale je najbolje dostaviti 3 do 5 dana ranije: agendu, spisak govornika, prezentacije, govore, glosare ili prethodne materijale.",
+        "Za simultano prevođenje neophodni su jasni tehnički uslovi: kvalitetan zvuk, profesionalna oprema ili platforma sa kanalima i vizuelni pregled govornika.",
       ],
     },
   ],
@@ -651,7 +658,7 @@ export const defaultContent: SiteContent = {
     groupDescription:
       "Za male grupe od 2 do 6 polaznika; popust se obračunava po osobi.",
     languageServiceDescription:
-      "Prema 250 reči, uz ponudu pre početka rada.",
+      "Pisane usluge obračunavaju se po prevodilačkoj strani od 250 reči, uz ponudu pre početka rada.",
     duration: "60 minuta",
   },
   testimonials: {

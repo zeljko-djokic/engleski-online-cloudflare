@@ -141,6 +141,43 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 10;
   }
 
+  if (version < 11) {
+    if (Array.isArray(source.services)) {
+      source.services = source.services.map((item) => {
+        if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+
+        const service = { ...(item as Record<string, unknown>) };
+        const defaultService = defaultContent.services.find(
+          (candidate) => candidate.slug === service.slug,
+        );
+
+        if (defaultService) {
+          service.asideText = defaultService.asideText;
+        }
+
+        if (service.slug === "usmeno-prevodjenje" && defaultService) {
+          service.process = structuredClone(defaultService.process);
+        }
+
+        return service;
+      });
+    }
+
+    if (
+      source.pricing &&
+      typeof source.pricing === "object" &&
+      !Array.isArray(source.pricing)
+    ) {
+      source.pricing = {
+        ...(source.pricing as Record<string, unknown>),
+        languageServiceDescription:
+          defaultContent.pricing.languageServiceDescription,
+      };
+    }
+
+    source.schemaVersion = 11;
+  }
+
   return source;
 }
 

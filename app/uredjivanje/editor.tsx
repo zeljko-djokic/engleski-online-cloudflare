@@ -458,6 +458,7 @@ export function Editor({
               <Field label="Jedinica obračuna" value={service.unit} onChange={(value) => setService(index, { ...service, unit: value })} />
               <Field label="Glavni naslov" value={service.headline} multiline onChange={(value) => setService(index, { ...service, headline: value })} />
               <Field label="Uvod" value={service.intro} multiline onChange={(value) => setService(index, { ...service, intro: value })} />
+              <Field label="Bočna napomena" value={service.asideText} multiline onChange={(value) => setService(index, { ...service, asideText: value })} />
             </div>
             <ListField label="Šta usluga obuhvata" value={service.includes} onChange={(value) => setService(index, { ...service, includes: value })} />
             <ListField label="Tok saradnje" value={service.process} onChange={(value) => setService(index, { ...service, process: value })} />

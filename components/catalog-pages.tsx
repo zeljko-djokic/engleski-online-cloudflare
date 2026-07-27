@@ -73,6 +73,7 @@ export function DetailPage({
   intro,
   sections,
   price,
+  asideText,
   backHref,
   backLabel,
 }: {
@@ -82,6 +83,7 @@ export function DetailPage({
   intro: string;
   sections: Array<{ title: string; items: string[] }>;
   price?: { label: string; value: string };
+  asideText?: string;
   backHref: string;
   backLabel: string;
 }) {
@@ -120,7 +122,7 @@ export function DetailPage({
                   <strong>{price.value}</strong>
                 </div>
               )}
-              <p>{content.labels.detailAsideText}</p>
+              <p>{asideText ?? content.labels.detailAsideText}</p>
               <a href="#kontakt">{content.labels.detailInquiryCta} <Arrow /></a>
             </aside>
           </div>
