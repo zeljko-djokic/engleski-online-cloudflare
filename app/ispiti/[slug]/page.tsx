@@ -7,8 +7,9 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const exam = (await getSiteContent()).exams.find((item) => item.slug === slug);
-  return exam ? { title: `${exam.title} priprema | Engleski Online`, description: exam.summary } : {};
+  const content = await getSiteContent();
+  const exam = content.exams.find((item) => item.slug === slug);
+  return exam ? { title: `${exam.title} priprema | ${content.labels.brandName}`, description: exam.summary } : {};
 }
 
 export default async function ExamDetailPage({ params }: Props) {
@@ -23,12 +24,15 @@ export default async function ExamDetailPage({ params }: Props) {
       eyebrow={exam.label}
       title={exam.headline}
       intro={exam.intro}
-      price={{ label: "Cena individualnog časa", value: `od ${content.pricing.lessonPrice}` }}
+      price={{
+        label: content.labels.examPriceLabel,
+        value: content.pricing.specializedLessonPrice,
+      }}
       backHref="/ispiti"
-      backLabel="Sve pripreme"
+      backLabel={content.labels.examBackLabel}
       sections={[
-        { title: "Na čemu radimo", items: exam.focus },
-        { title: "Kako izgleda priprema", items: exam.format },
+        { title: content.labels.examFocusTitle, items: exam.focus },
+        { title: content.labels.examFormatTitle, items: exam.format },
       ]}
     />
   );

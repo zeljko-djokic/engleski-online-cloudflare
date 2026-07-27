@@ -9,36 +9,37 @@ export function Arrow() {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ content }: { content: SiteContent }) {
+  const { labels } = content;
   return (
     <>
       <a className="skip-link" href="#sadrzaj">
-        Pređite na glavni sadržaj
+        {labels.skipLink}
       </a>
       <header className="site-header">
         <div className="header-inner">
-          <Link className="wordmark" href="/" aria-label="Engleski Online — početna">
-            Engleski Online
+          <Link className="wordmark" href="/">
+            {labels.brandName}
           </Link>
           <nav className="desktop-nav" aria-label="Glavna navigacija">
-            <Link href="/">Početna</Link>
-            <Link href="/kursevi">Kursevi</Link>
-            <Link href="/ispiti">Ispiti</Link>
-            <Link href="/usluge">Jezičke usluge</Link>
-            <Link href="/#o-meni">O meni</Link>
-            <Link href="/#kontakt">Kontakt</Link>
+            <Link href="/">{labels.navigationHome}</Link>
+            <Link href="/kursevi">{labels.navigationCourses}</Link>
+            <Link href="/ispiti">{labels.navigationExams}</Link>
+            <Link href="/usluge">{labels.navigationServices}</Link>
+            <Link href="/#o-meni">{labels.navigationAbout}</Link>
+            <Link href="/#kontakt">{labels.navigationContact}</Link>
           </nav>
           <Link className="header-cta" href="/#kontakt">
-            Zakažite razgovor
+            {labels.headerCta}
           </Link>
           <details className="mobile-menu">
-            <summary aria-label="Otvorite navigaciju">Meni</summary>
+            <summary>{labels.mobileMenu}</summary>
             <nav aria-label="Mobilna navigacija">
-              <Link href="/kursevi">Kursevi</Link>
-              <Link href="/ispiti">Ispiti</Link>
-              <Link href="/usluge">Jezičke usluge</Link>
-              <Link href="/#o-meni">O meni</Link>
-              <Link href="/#kontakt">Kontakt</Link>
+              <Link href="/kursevi">{labels.navigationCourses}</Link>
+              <Link href="/ispiti">{labels.navigationExams}</Link>
+              <Link href="/usluge">{labels.navigationServices}</Link>
+              <Link href="/#o-meni">{labels.navigationAbout}</Link>
+              <Link href="/#kontakt">{labels.navigationContact}</Link>
             </nav>
           </details>
         </div>
@@ -48,7 +49,7 @@ export function SiteHeader() {
 }
 
 export function ContactSection({ content }: { content: SiteContent }) {
-  const { global, contact } = content;
+  const { global, contact, labels } = content;
   return (
     <section className="contact-section" id="kontakt">
       <div className="shell contact-layout">
@@ -67,7 +68,7 @@ export function ContactSection({ content }: { content: SiteContent }) {
             </a>
           ) : (
             <div className="calendar-placeholder">
-              <span>Google Calendar</span>
+              <span>{labels.calendarProviderLabel}</span>
               <strong>{contact.calendarPlaceholder}</strong>
             </div>
           )}
@@ -75,7 +76,7 @@ export function ContactSection({ content }: { content: SiteContent }) {
         <div className="contact-actions">
           <a
             className="contact-primary"
-            href={`mailto:${global.email}?subject=Upit%20sa%20sajta%20Engleski%20Online`}
+            href={`mailto:${global.email}?subject=${encodeURIComponent(labels.contactMailSubject)}`}
           >
             <span>{contact.emailLabel}</span>
             <strong>{global.email}</strong>
@@ -97,15 +98,16 @@ export function ContactSection({ content }: { content: SiteContent }) {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ content }: { content: SiteContent }) {
+  const { labels } = content;
   return (
     <footer className="site-footer">
       <div className="shell">
         <Link className="wordmark" href="/">
-          Engleski Online
+          {labels.brandName}
         </Link>
-        <p>Individualna nastava i stručne jezičke usluge.</p>
-        <p>© 2026 Željko Đokić</p>
+        <p>{labels.footerTagline}</p>
+        <p>{labels.footerCopyright}</p>
       </div>
     </footer>
   );

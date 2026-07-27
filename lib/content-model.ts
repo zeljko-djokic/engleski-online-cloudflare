@@ -43,6 +43,7 @@ export type FaqItem = {
 };
 
 export type SiteContent = {
+  schemaVersion: number;
   global: {
     email: string;
     phoneDisplay: string;
@@ -51,6 +52,59 @@ export type SiteContent = {
     linkedinUrl: string;
     calendarUrl: string;
     calendarLabel: string;
+  };
+  labels: {
+    brandName: string;
+    skipLink: string;
+    navigationHome: string;
+    navigationCourses: string;
+    navigationExams: string;
+    navigationServices: string;
+    navigationAbout: string;
+    navigationContact: string;
+    headerCta: string;
+    mobileMenu: string;
+    dictionaryPartOfSpeech: string;
+    dictionaryWord: string;
+    dictionaryPronunciation: string;
+    trustName: string;
+    trustItems: string[];
+    examsAllCta: string;
+    serviceNote: string;
+    aboutMark: string;
+    aboutMotto: string;
+    aboutEducationLabel: string;
+    aboutExamsLabel: string;
+    aboutSpecialismsLabel: string;
+    aboutTranslationLabel: string;
+    linkedinCta: string;
+    pricingIndividualLabel: string;
+    pricingPackageLabel: string;
+    pricingGroupsLabel: string;
+    pricingServicesLabel: string;
+    pricingCta: string;
+    catalogDetailCta: string;
+    detailPrimaryCta: string;
+    detailAsideText: string;
+    detailInquiryCta: string;
+    courseBackLabel: string;
+    coursePriceLabel: string;
+    courseAudienceTitle: string;
+    courseOutcomesTitle: string;
+    courseFormatTitle: string;
+    serviceEyebrow: string;
+    serviceBackLabel: string;
+    servicePriceLabel: string;
+    serviceIncludesTitle: string;
+    serviceProcessTitle: string;
+    examBackLabel: string;
+    examPriceLabel: string;
+    examFocusTitle: string;
+    examFormatTitle: string;
+    calendarProviderLabel: string;
+    footerTagline: string;
+    footerCopyright: string;
+    contactMailSubject: string;
   };
   hero: {
     eyebrow: string;
@@ -95,12 +149,15 @@ export type SiteContent = {
   exams: Exam[];
   services: LanguageService[];
   pricing: {
-    lessonPrice: string;
+    generalLessonLabel: string;
+    generalLessonPrice: string;
+    specializedLessonLabel: string;
+    specializedLessonPrice: string;
+    lessonBenefits: string[];
     packageDiscount: string;
     packageDescription: string;
     groupDiscount: string;
     groupDescription: string;
-    languageServicePrice: string;
     languageServiceDescription: string;
     duration: string;
   };
@@ -117,6 +174,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
+  schemaVersion: 2,
   global: {
     email: "zeljko.d.djokic@gmail.com",
     phoneDisplay: "+381 63 73 94 618",
@@ -126,6 +184,65 @@ export const defaultContent: SiteContent = {
     linkedinUrl: "https://www.linkedin.com/in/%C5%BEeljko-%C4%91oki%C4%87/",
     calendarUrl: "",
     calendarLabel: "Zakažite termin preko Google kalendara",
+  },
+  labels: {
+    brandName: "Engleski Online",
+    skipLink: "Pređite na glavni sadržaj",
+    navigationHome: "Početna",
+    navigationCourses: "Kursevi",
+    navigationExams: "Ispiti",
+    navigationServices: "Jezičke usluge",
+    navigationAbout: "O meni",
+    navigationContact: "Kontakt",
+    headerCta: "Zakažite razgovor",
+    mobileMenu: "Meni",
+    dictionaryPartOfSpeech: "noun",
+    dictionaryWord: "language",
+    dictionaryPronunciation: "/ˈlæŋɡwɪdʒ/",
+    trustName: "Željko Đokić",
+    trustItems: [
+      "Individualni pristup",
+      "Fleksibilni termini",
+      "Materijali uključeni",
+    ],
+    examsAllCta: "Pogledajte sve pripreme",
+    serviceNote:
+      "Konačna ponuda zavisi od obima, složenosti i roka. Dokumenti se pregledaju pre potvrde cene, a sadržaj se tretira poverljivo.",
+    aboutMark: "ŽĐ",
+    aboutMotto: "Jezik · preciznost · razumevanje",
+    aboutEducationLabel: "Obrazovanje",
+    aboutExamsLabel: "Ispiti",
+    aboutSpecialismsLabel: "Stručne oblasti",
+    aboutTranslationLabel: "Prevođenje",
+    linkedinCta: "Pogledajte LinkedIn profil",
+    pricingIndividualLabel: "Individualna nastava",
+    pricingPackageLabel: "Paket",
+    pricingGroupsLabel: "Male grupe",
+    pricingServicesLabel: "Jezičke usluge",
+    pricingCta: "Zakažite razgovor",
+    catalogDetailCta: "Detaljan opis",
+    detailPrimaryCta: "Zakažite uvodni razgovor",
+    detailAsideText:
+      "Program i dinamika rada prilagođavaju se vašem početnom nivou, cilju i vremenu koje imate na raspolaganju.",
+    detailInquiryCta: "Pošaljite upit",
+    courseBackLabel: "Svi kursevi",
+    coursePriceLabel: "Cena individualnog časa",
+    courseAudienceTitle: "Kome je program namenjen",
+    courseOutcomesTitle: "Šta ćete postići",
+    courseFormatTitle: "Kako izgleda rad",
+    serviceEyebrow: "Stručne jezičke usluge",
+    serviceBackLabel: "Sve usluge",
+    servicePriceLabel: "Cena",
+    serviceIncludesTitle: "Usluga obuhvata",
+    serviceProcessTitle: "Kako izgleda saradnja",
+    examBackLabel: "Sve pripreme",
+    examPriceLabel: "Cena individualnog časa",
+    examFocusTitle: "Na čemu radimo",
+    examFormatTitle: "Kako izgleda priprema",
+    calendarProviderLabel: "Google Calendar",
+    footerTagline: "Individualna nastava i stručne jezičke usluge.",
+    footerCopyright: "© 2026 Željko Đokić",
+    contactMailSubject: "Upit sa sajta Engleski Online",
   },
   hero: {
     eyebrow: "Individualna nastava · Prevođenje · Lektura",
@@ -436,7 +553,7 @@ export const defaultContent: SiteContent = {
       title: "Prevođenje EN ↔ SR",
       summary:
         "Poslovni, medicinski, farmaceutski, akademski, tehnički i promotivni sadržaji — sa lekturom i tehničkom obradom.",
-      price: "od 15 €",
+      price: "16 €",
       unit: "/ 250 reči",
       headline: "Prevod koji zvuči prirodno i čuva stručni smisao izvornika.",
       intro:
@@ -504,14 +621,21 @@ export const defaultContent: SiteContent = {
     },
   ],
   pricing: {
-    lessonPrice: "15 €",
+    generalLessonLabel: "Opšti kurs",
+    generalLessonPrice: "15 €",
+    specializedLessonLabel: "Specijalizovani kurs",
+    specializedLessonPrice: "17 €",
+    lessonBenefits: [
+      "Materijali uključeni",
+      "Procena nivoa i plan rada",
+      "Fiksni ili fleksibilni termini",
+    ],
     packageDiscount: "−10%",
     packageDescription:
       "Za paket od 12 unapred uplaćenih individualnih časova.",
     groupDiscount: "−10–50%",
     groupDescription:
       "Za male grupe od 2 do 6 polaznika; popust se obračunava po osobi.",
-    languageServicePrice: "od 8 €",
     languageServiceDescription:
       "Prema 250 reči, uz ponudu pre početka rada.",
     duration: "60 minuta",

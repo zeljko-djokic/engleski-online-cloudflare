@@ -20,7 +20,7 @@ export default async function CoursesPage() {
         label: program.number,
         title: program.title,
         text: program.summary,
-        meta: `${program.meta} · od ${program.price}`,
+        meta: `${program.meta} · ${program.price}`,
       }))}
     />
   );

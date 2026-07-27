@@ -7,8 +7,9 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = (await getSiteContent()).services.find((item) => item.slug === slug);
-  return service ? { title: `${service.title} | Engleski Online`, description: service.summary } : {};
+  const content = await getSiteContent();
+  const service = content.services.find((item) => item.slug === slug);
+  return service ? { title: `${service.title} | ${content.labels.brandName}`, description: service.summary } : {};
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
@@ -20,15 +21,15 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <DetailPage
       content={content}
-      eyebrow="Stručne jezičke usluge"
+      eyebrow={content.labels.serviceEyebrow}
       title={service.headline}
       intro={service.intro}
-      price={{ label: "Početna cena", value: `${service.price} ${service.unit}` }}
+      price={{ label: content.labels.servicePriceLabel, value: `${service.price} ${service.unit}` }}
       backHref="/usluge"
-      backLabel="Sve usluge"
+      backLabel={content.labels.serviceBackLabel}
       sections={[
-        { title: "Usluga obuhvata", items: service.includes },
-        { title: "Kako izgleda saradnja", items: service.process },
+        { title: content.labels.serviceIncludesTitle, items: service.includes },
+        { title: content.labels.serviceProcessTitle, items: service.process },
       ]}
     />
   );

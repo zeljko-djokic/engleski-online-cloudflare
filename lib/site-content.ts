@@ -10,6 +10,37 @@ async function getD1() {
   return env.DB;
 }
 
+function migrateLegacyContent(value: unknown): unknown {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value;
+
+  const source = structuredClone(value) as Record<string, unknown>;
+  const version =
+    typeof source.schemaVersion === "number" ? source.schemaVersion : 1;
+
+  if (version < 2) {
+    if (Array.isArray(source.services)) {
+      source.services = source.services.map((item) => {
+        if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+        const service = { ...(item as Record<string, unknown>) };
+
+        if (service.slug === "prevodjenje") {
+          service.price = "16 €";
+        }
+
+        if (service.slug === "lektura-korektura-redaktura") {
+          service.price = "8 €";
+        }
+
+        return service;
+      });
+    }
+
+    source.schemaVersion = 2;
+  }
+
+  return source;
+}
+
 function mergeWithDefaults<T>(defaults: T, value: unknown): T {
   if (Array.isArray(defaults)) {
     return (Array.isArray(value) ? value : defaults) as T;
@@ -43,7 +74,10 @@ export async function getSiteContent(): Promise<SiteContent> {
       .first<ContentRow>();
     if (!row) return defaultContent;
 
-    return mergeWithDefaults(defaultContent, JSON.parse(row.content));
+    return mergeWithDefaults(
+      defaultContent,
+      migrateLegacyContent(JSON.parse(row.content)),
+    );
   } catch {
     return defaultContent;
   }
@@ -69,5 +103,5 @@ export async function saveSiteContent(
 }
 
 export function normalizeSiteContent(value: unknown): SiteContent {
-  return mergeWithDefaults(defaultContent, value);
+  return mergeWithDefaults(defaultContent, migrateLegacyContent(value));
 }

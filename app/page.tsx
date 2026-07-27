@@ -5,11 +5,17 @@ import { getSiteContent } from "@/lib/site-content";
 
 export default async function Home() {
   const content = await getSiteContent();
-  const { global, hero, home, about, pricing } = content;
+  const { global, hero, home, about, pricing, labels } = content;
+  const translationService = content.services.find(
+    (service) => service.slug === "prevodjenje",
+  );
+  const proofreadingService = content.services.find(
+    (service) => service.slug === "lektura-korektura-redaktura",
+  );
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader content={content} />
       <main id="sadrzaj">
         <section className="hero shell" id="pocetna">
           <div className="hero-copy">
@@ -32,9 +38,9 @@ export default async function Home() {
           </div>
           <div className="hero-art" aria-hidden="true">
             <div className="paper-note">
-              <span>noun</span>
-              <strong>language</strong>
-              <em>/ˈlæŋɡwɪdʒ/</em>
+              <span>{labels.dictionaryPartOfSpeech}</span>
+              <strong>{labels.dictionaryWord}</strong>
+              <em>{labels.dictionaryPronunciation}</em>
             </div>
             <Image
               src="/hero-editorial.webp"
@@ -49,17 +55,19 @@ export default async function Home() {
 
         <section className="trust-strip shell" aria-label="Profesionalne informacije">
           <div className="credential">
-            <span className="credential-mark" aria-hidden="true">ŽĐ</span>
+            <span className="credential-mark" aria-hidden="true">{labels.aboutMark}</span>
             <p>
-              <strong>Željko Đokić</strong>
+              <strong>{labels.trustName}</strong>
               <span>{hero.credential}</span>
               <span>{hero.experience}</span>
             </p>
           </div>
           <div className="trust-items">
-            <p><span>01</span> Individualni pristup</p>
-            <p><span>02</span> Fleksibilni termini</p>
-            <p><span>03</span> Materijali uključeni</p>
+            {labels.trustItems.map((item, index) => (
+              <p key={item}>
+                <span>{String(index + 1).padStart(2, "0")}</span> {item}
+              </p>
+            ))}
           </div>
         </section>
 
@@ -75,7 +83,7 @@ export default async function Home() {
                 <a className="program-card card-link" href={`/kursevi/${program.slug}`} key={program.slug}>
                   <div className="card-topline">
                     <span>{program.number}</span>
-                    <span>od {program.price}</span>
+                    <span>{program.price}</span>
                   </div>
                   <h3>{program.title}</h3>
                   <p>{program.summary}</p>
@@ -93,7 +101,7 @@ export default async function Home() {
               <h2>{home.examsHeadline}</h2>
               <p>{home.examsIntro}</p>
               <Link className="text-link" href="/ispiti">
-                Pogledajte sve pripreme <Arrow />
+                {labels.examsAllCta} <Arrow />
               </Link>
             </div>
             <div className="exam-list">
@@ -145,18 +153,15 @@ export default async function Home() {
                 </a>
               ))}
             </div>
-            <p className="service-note">
-              Konačna ponuda zavisi od obima, složenosti i roka. Dokumenti se
-              pregledaju pre potvrde cene, a sadržaj se tretira poverljivo.
-            </p>
+            <p className="service-note">{labels.serviceNote}</p>
           </div>
         </section>
 
         <section className="section about-section" id="o-meni">
           <div className="shell about-layout">
             <div className="about-mark" aria-hidden="true">
-              <span>ŽĐ</span>
-              <p>Jezik · preciznost · razumevanje</p>
+              <span>{labels.aboutMark}</span>
+              <p>{labels.aboutMotto}</p>
             </div>
             <div className="about-copy">
               <p className="eyebrow">{about.eyebrow}</p>
@@ -164,13 +169,13 @@ export default async function Home() {
               <p className="about-lede">{about.lede}</p>
               <p>{about.body}</p>
               <div className="about-facts">
-                <p><strong>Obrazovanje</strong>{about.education}</p>
-                <p><strong>Ispiti</strong>{about.exams}</p>
-                <p><strong>Stručne oblasti</strong>{about.specialisms}</p>
-                <p><strong>Prevođenje</strong>{about.translation}</p>
+                <p><strong>{labels.aboutEducationLabel}</strong>{about.education}</p>
+                <p><strong>{labels.aboutExamsLabel}</strong>{about.exams}</p>
+                <p><strong>{labels.aboutSpecialismsLabel}</strong>{about.specialisms}</p>
+                <p><strong>{labels.aboutTranslationLabel}</strong>{about.translation}</p>
               </div>
               <a className="linkedin-link" href={global.linkedinUrl} target="_blank" rel="noreferrer">
-                Pogledajte LinkedIn profil <span aria-hidden="true">↗</span>
+                {labels.linkedinCta} <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -185,29 +190,51 @@ export default async function Home() {
             </div>
             <div className="price-grid">
               <article className="price-card featured-price">
-                <p>Individualna nastava</p>
-                <h3><span>od</span> {pricing.lessonPrice}</h3>
+                <p>{labels.pricingIndividualLabel}</p>
+                <div className="price-pairs">
+                  <div>
+                    <span>{pricing.generalLessonLabel}</span>
+                    <strong>{pricing.generalLessonPrice}</strong>
+                  </div>
+                  <div>
+                    <span>{pricing.specializedLessonLabel}</span>
+                    <strong>{pricing.specializedLessonPrice}</strong>
+                  </div>
+                </div>
                 <ul>
                   <li>{pricing.duration}</li>
-                  <li>Materijali uključeni</li>
-                  <li>Procena nivoa i plan rada</li>
-                  <li>Fiksni ili fleksibilni termini</li>
+                  {pricing.lessonBenefits.map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
                 </ul>
-                <a href="#kontakt">Zakažite razgovor <Arrow /></a>
+                <a href="#kontakt">{labels.pricingCta} <Arrow /></a>
               </article>
               <article className="price-card">
-                <p>Paket</p>
+                <p>{labels.pricingPackageLabel}</p>
                 <h3>{pricing.packageDiscount}</h3>
                 <p>{pricing.packageDescription}</p>
               </article>
               <article className="price-card">
-                <p>Male grupe</p>
+                <p>{labels.pricingGroupsLabel}</p>
                 <h3>{pricing.groupDiscount}</h3>
                 <p>{pricing.groupDescription}</p>
               </article>
               <article className="price-card">
-                <p>Jezičke usluge</p>
-                <h3>{pricing.languageServicePrice}</h3>
+                <p>{labels.pricingServicesLabel}</p>
+                <div className="price-pairs service-summary-prices">
+                  {translationService && (
+                    <div>
+                      <span>{translationService.title}</span>
+                      <strong>{translationService.price}</strong>
+                    </div>
+                  )}
+                  {proofreadingService && (
+                    <div>
+                      <span>{proofreadingService.title}</span>
+                      <strong>{proofreadingService.price}</strong>
+                    </div>
+                  )}
+                </div>
                 <p>{pricing.languageServiceDescription}</p>
               </article>
             </div>
@@ -232,7 +259,7 @@ export default async function Home() {
         </section>
         <ContactSection content={content} />
       </main>
-      <SiteFooter />
+      <SiteFooter content={content} />
     </>
   );
 }

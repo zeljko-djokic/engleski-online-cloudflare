@@ -24,7 +24,7 @@ export function CatalogIndex({
 }) {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader content={content} />
       <main id="sadrzaj">
         <section className="catalog-hero shell">
           <p className="eyebrow">{eyebrow}</p>
@@ -39,14 +39,14 @@ export function CatalogIndex({
                 <h2>{card.title}</h2>
                 <p>{card.text}</p>
                 {card.meta && <strong>{card.meta}</strong>}
-                <div>Detaljan opis <Arrow /></div>
+                <div>{content.labels.catalogDetailCta} <Arrow /></div>
               </a>
             ))}
           </div>
         </section>
         <ContactSection content={content} />
       </main>
-      <SiteFooter />
+      <SiteFooter content={content} />
     </>
   );
 }
@@ -72,7 +72,7 @@ export function DetailPage({
 }) {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader content={content} />
       <main id="sadrzaj">
         <section className="detail-hero shell">
           <a className="back-link" href={backHref}>← {backLabel}</a>
@@ -80,7 +80,7 @@ export function DetailPage({
           <h1>{title}</h1>
           <p className="detail-lede">{intro}</p>
           <a className="button button-primary" href="#kontakt">
-            Zakažite uvodni razgovor <Arrow />
+            {content.labels.detailPrimaryCta} <Arrow />
           </a>
         </section>
         <section className="detail-body">
@@ -105,17 +105,14 @@ export function DetailPage({
                   <strong>{price.value}</strong>
                 </div>
               )}
-              <p>
-                Program i dinamika rada prilagođavaju se vašem početnom nivou,
-                cilju i vremenu koje imate na raspolaganju.
-              </p>
-              <a href="#kontakt">Pošaljite upit <Arrow /></a>
+              <p>{content.labels.detailAsideText}</p>
+              <a href="#kontakt">{content.labels.detailInquiryCta} <Arrow /></a>
             </aside>
           </div>
         </section>
         <ContactSection content={content} />
       </main>
-      <SiteFooter />
+      <SiteFooter content={content} />
     </>
   );
 }

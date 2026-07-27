@@ -164,6 +164,7 @@ export function Editor({
 
       <nav className="editor-jump" aria-label="Prečice kroz urednik">
         <a href="#osnovno">Osnovno</a>
+        <a href="#tekstovi-urednik">Zajednički tekstovi</a>
         <a href="#pocetna-urednik">Početna</a>
         <a href="#kursevi-urednik">Kursevi</a>
         <a href="#ispiti-urednik">Ispiti</a>
@@ -182,6 +183,83 @@ export function Editor({
             <Field label="Google Calendar link" value={content.global.calendarUrl} onChange={(value) => updateContent((draft) => { draft.global.calendarUrl = value; })} hint="Ostavite prazno dok link nije spreman." />
             <Field label="Tekst dugmeta kalendara" value={content.global.calendarLabel} onChange={(value) => updateContent((draft) => { draft.global.calendarLabel = value; })} />
             <Field label="Tekst rezervisanog mesta" value={content.contact.calendarPlaceholder} onChange={(value) => updateContent((draft) => { draft.contact.calendarPlaceholder = value; })} />
+          </div>
+        </EditorSection>
+      </div>
+
+      <div id="tekstovi-urednik">
+        <EditorSection
+          title="Naziv, navigacija i podnožje"
+          description="Tekstovi koji se pojavljuju na svim stranicama"
+        >
+          <div className="editor-grid">
+            <Field label="Naziv sajta" value={content.labels.brandName} onChange={(value) => updateContent((draft) => { draft.labels.brandName = value; })} />
+            <Field label="Link za preskakanje navigacije" value={content.labels.skipLink} onChange={(value) => updateContent((draft) => { draft.labels.skipLink = value; })} />
+            <Field label="Navigacija — početna" value={content.labels.navigationHome} onChange={(value) => updateContent((draft) => { draft.labels.navigationHome = value; })} />
+            <Field label="Navigacija — kursevi" value={content.labels.navigationCourses} onChange={(value) => updateContent((draft) => { draft.labels.navigationCourses = value; })} />
+            <Field label="Navigacija — ispiti" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
+            <Field label="Navigacija — usluge" value={content.labels.navigationServices} onChange={(value) => updateContent((draft) => { draft.labels.navigationServices = value; })} />
+            <Field label="Navigacija — o meni" value={content.labels.navigationAbout} onChange={(value) => updateContent((draft) => { draft.labels.navigationAbout = value; })} />
+            <Field label="Navigacija — kontakt" value={content.labels.navigationContact} onChange={(value) => updateContent((draft) => { draft.labels.navigationContact = value; })} />
+            <Field label="Dugme u zaglavlju" value={content.labels.headerCta} onChange={(value) => updateContent((draft) => { draft.labels.headerCta = value; })} />
+            <Field label="Mobilni meni" value={content.labels.mobileMenu} onChange={(value) => updateContent((draft) => { draft.labels.mobileMenu = value; })} />
+            <Field label="Rečnik — vrsta reči" value={content.labels.dictionaryPartOfSpeech} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryPartOfSpeech = value; })} />
+            <Field label="Rečnik — reč" value={content.labels.dictionaryWord} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryWord = value; })} />
+            <Field label="Rečnik — izgovor" value={content.labels.dictionaryPronunciation} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryPronunciation = value; })} />
+            <Field label="Podnožje — opis" value={content.labels.footerTagline} onChange={(value) => updateContent((draft) => { draft.labels.footerTagline = value; })} />
+            <Field label="Podnožje — autorski tekst" value={content.labels.footerCopyright} onChange={(value) => updateContent((draft) => { draft.labels.footerCopyright = value; })} />
+            <Field label="Naslov mejla sa sajta" value={content.labels.contactMailSubject} onChange={(value) => updateContent((draft) => { draft.labels.contactMailSubject = value; })} />
+            <Field label="Naziv kalendara" value={content.labels.calendarProviderLabel} onChange={(value) => updateContent((draft) => { draft.labels.calendarProviderLabel = value; })} />
+          </div>
+        </EditorSection>
+
+        <EditorSection
+          title="Kraći tekstovi na početnoj"
+          description="Oznake, pozivi na akciju i napomene koje ranije nisu mogle da se menjaju"
+        >
+          <div className="editor-grid">
+            <Field label="Ime u traci poverenja" value={content.labels.trustName} onChange={(value) => updateContent((draft) => { draft.labels.trustName = value; })} />
+            <Field label="Dugme ka svim pripremama" value={content.labels.examsAllCta} onChange={(value) => updateContent((draft) => { draft.labels.examsAllCta = value; })} />
+            <Field label="Napomena ispod jezičkih usluga" value={content.labels.serviceNote} multiline onChange={(value) => updateContent((draft) => { draft.labels.serviceNote = value; })} />
+            <Field label="Inicijali u sekciji O meni" value={content.labels.aboutMark} onChange={(value) => updateContent((draft) => { draft.labels.aboutMark = value; })} />
+            <Field label="Moto u sekciji O meni" value={content.labels.aboutMotto} onChange={(value) => updateContent((draft) => { draft.labels.aboutMotto = value; })} />
+            <Field label="O meni — obrazovanje" value={content.labels.aboutEducationLabel} onChange={(value) => updateContent((draft) => { draft.labels.aboutEducationLabel = value; })} />
+            <Field label="O meni — ispiti" value={content.labels.aboutExamsLabel} onChange={(value) => updateContent((draft) => { draft.labels.aboutExamsLabel = value; })} />
+            <Field label="O meni — stručne oblasti" value={content.labels.aboutSpecialismsLabel} onChange={(value) => updateContent((draft) => { draft.labels.aboutSpecialismsLabel = value; })} />
+            <Field label="O meni — prevođenje" value={content.labels.aboutTranslationLabel} onChange={(value) => updateContent((draft) => { draft.labels.aboutTranslationLabel = value; })} />
+            <Field label="LinkedIn dugme" value={content.labels.linkedinCta} onChange={(value) => updateContent((draft) => { draft.labels.linkedinCta = value; })} />
+            <Field label="Cenovnik — individualna nastava" value={content.labels.pricingIndividualLabel} onChange={(value) => updateContent((draft) => { draft.labels.pricingIndividualLabel = value; })} />
+            <Field label="Cenovnik — paket" value={content.labels.pricingPackageLabel} onChange={(value) => updateContent((draft) => { draft.labels.pricingPackageLabel = value; })} />
+            <Field label="Cenovnik — grupe" value={content.labels.pricingGroupsLabel} onChange={(value) => updateContent((draft) => { draft.labels.pricingGroupsLabel = value; })} />
+            <Field label="Cenovnik — jezičke usluge" value={content.labels.pricingServicesLabel} onChange={(value) => updateContent((draft) => { draft.labels.pricingServicesLabel = value; })} />
+            <Field label="Dugme u cenovniku" value={content.labels.pricingCta} onChange={(value) => updateContent((draft) => { draft.labels.pricingCta = value; })} />
+          </div>
+          <ListField label="Stavke u traci poverenja" value={content.labels.trustItems} onChange={(value) => updateContent((draft) => { draft.labels.trustItems = value; })} />
+        </EditorSection>
+
+        <EditorSection
+          title="Kartice i detaljne stranice"
+          description="Oznake i dugmad na stranicama kurseva, ispita i usluga"
+        >
+          <div className="editor-grid">
+            <Field label="Kartica — detaljan opis" value={content.labels.catalogDetailCta} onChange={(value) => updateContent((draft) => { draft.labels.catalogDetailCta = value; })} />
+            <Field label="Detaljna stranica — glavno dugme" value={content.labels.detailPrimaryCta} onChange={(value) => updateContent((draft) => { draft.labels.detailPrimaryCta = value; })} />
+            <Field label="Detaljna stranica — bočna napomena" value={content.labels.detailAsideText} multiline onChange={(value) => updateContent((draft) => { draft.labels.detailAsideText = value; })} />
+            <Field label="Detaljna stranica — pošaljite upit" value={content.labels.detailInquiryCta} onChange={(value) => updateContent((draft) => { draft.labels.detailInquiryCta = value; })} />
+            <Field label="Kursevi — povratak" value={content.labels.courseBackLabel} onChange={(value) => updateContent((draft) => { draft.labels.courseBackLabel = value; })} />
+            <Field label="Kursevi — oznaka cene" value={content.labels.coursePriceLabel} onChange={(value) => updateContent((draft) => { draft.labels.coursePriceLabel = value; })} />
+            <Field label="Kursevi — kome je namenjen" value={content.labels.courseAudienceTitle} onChange={(value) => updateContent((draft) => { draft.labels.courseAudienceTitle = value; })} />
+            <Field label="Kursevi — ishodi" value={content.labels.courseOutcomesTitle} onChange={(value) => updateContent((draft) => { draft.labels.courseOutcomesTitle = value; })} />
+            <Field label="Kursevi — format rada" value={content.labels.courseFormatTitle} onChange={(value) => updateContent((draft) => { draft.labels.courseFormatTitle = value; })} />
+            <Field label="Usluge — nadnaslov" value={content.labels.serviceEyebrow} onChange={(value) => updateContent((draft) => { draft.labels.serviceEyebrow = value; })} />
+            <Field label="Usluge — povratak" value={content.labels.serviceBackLabel} onChange={(value) => updateContent((draft) => { draft.labels.serviceBackLabel = value; })} />
+            <Field label="Usluge — oznaka cene" value={content.labels.servicePriceLabel} onChange={(value) => updateContent((draft) => { draft.labels.servicePriceLabel = value; })} />
+            <Field label="Usluge — sadržaj" value={content.labels.serviceIncludesTitle} onChange={(value) => updateContent((draft) => { draft.labels.serviceIncludesTitle = value; })} />
+            <Field label="Usluge — tok saradnje" value={content.labels.serviceProcessTitle} onChange={(value) => updateContent((draft) => { draft.labels.serviceProcessTitle = value; })} />
+            <Field label="Ispiti — povratak" value={content.labels.examBackLabel} onChange={(value) => updateContent((draft) => { draft.labels.examBackLabel = value; })} />
+            <Field label="Ispiti — oznaka cene" value={content.labels.examPriceLabel} onChange={(value) => updateContent((draft) => { draft.labels.examPriceLabel = value; })} />
+            <Field label="Ispiti — oblasti rada" value={content.labels.examFocusTitle} onChange={(value) => updateContent((draft) => { draft.labels.examFocusTitle = value; })} />
+            <Field label="Ispiti — format pripreme" value={content.labels.examFormatTitle} onChange={(value) => updateContent((draft) => { draft.labels.examFormatTitle = value; })} />
           </div>
         </EditorSection>
       </div>
@@ -257,15 +335,18 @@ export function Editor({
 
         <EditorSection title="Cene i popusti">
           <div className="editor-grid">
-            <Field label="Početna cena časa" value={content.pricing.lessonPrice} onChange={(value) => updateContent((draft) => { draft.pricing.lessonPrice = value; })} />
+            <Field label="Naziv opšteg kursa u cenovniku" value={content.pricing.generalLessonLabel} onChange={(value) => updateContent((draft) => { draft.pricing.generalLessonLabel = value; })} />
+            <Field label="Cena opšteg kursa" value={content.pricing.generalLessonPrice} onChange={(value) => updateContent((draft) => { draft.pricing.generalLessonPrice = value; })} />
+            <Field label="Naziv specijalizovanog kursa u cenovniku" value={content.pricing.specializedLessonLabel} onChange={(value) => updateContent((draft) => { draft.pricing.specializedLessonLabel = value; })} />
+            <Field label="Cena specijalizovanog kursa" value={content.pricing.specializedLessonPrice} onChange={(value) => updateContent((draft) => { draft.pricing.specializedLessonPrice = value; })} />
             <Field label="Trajanje časa" value={content.pricing.duration} onChange={(value) => updateContent((draft) => { draft.pricing.duration = value; })} />
             <Field label="Popust za paket" value={content.pricing.packageDiscount} onChange={(value) => updateContent((draft) => { draft.pricing.packageDiscount = value; })} />
             <Field label="Opis paketa" value={content.pricing.packageDescription} multiline onChange={(value) => updateContent((draft) => { draft.pricing.packageDescription = value; })} />
             <Field label="Popust za grupe" value={content.pricing.groupDiscount} onChange={(value) => updateContent((draft) => { draft.pricing.groupDiscount = value; })} />
             <Field label="Opis grupa" value={content.pricing.groupDescription} multiline onChange={(value) => updateContent((draft) => { draft.pricing.groupDescription = value; })} />
-            <Field label="Početna cena usluga" value={content.pricing.languageServicePrice} onChange={(value) => updateContent((draft) => { draft.pricing.languageServicePrice = value; })} />
             <Field label="Opis obračuna usluga" value={content.pricing.languageServiceDescription} multiline onChange={(value) => updateContent((draft) => { draft.pricing.languageServiceDescription = value; })} />
           </div>
+          <ListField label="Šta je uključeno u nastavu" value={content.pricing.lessonBenefits} onChange={(value) => updateContent((draft) => { draft.pricing.lessonBenefits = value; })} />
         </EditorSection>
       </div>
 

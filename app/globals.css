@@ -842,6 +842,51 @@ summary:focus-visible {
   letter-spacing: 0;
 }
 
+.price-pairs {
+  display: grid;
+  margin: 38px 0 30px;
+  gap: 18px;
+}
+
+.price-pairs > div {
+  display: grid;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.25);
+  gap: 5px;
+}
+
+.price-pairs span {
+  color: #e3e9ff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.price-pairs strong {
+  font-family: var(--display);
+  font-size: clamp(2.7rem, 4vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+
+.service-summary-prices {
+  margin-bottom: 26px;
+}
+
+.service-summary-prices > div {
+  border-color: var(--line);
+}
+
+.service-summary-prices span {
+  color: var(--cobalt);
+}
+
+.service-summary-prices strong {
+  font-size: clamp(2.4rem, 3.2vw, 3.35rem);
+}
+
 .price-card ul {
   margin: 0;
   padding: 0;
