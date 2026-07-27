@@ -55,6 +55,7 @@ export function SiteHeader({ content }: { content: SiteContent }) {
             <Link href="/ispiti">{labels.navigationExams}</Link>
             <Link href="/usluge">{labels.navigationServices}</Link>
             <Link href="/#o-meni">{labels.navigationAbout}</Link>
+            <Link href="/#utisci">{labels.navigationTestimonials}</Link>
             <Link href="/#kontakt">{labels.navigationContact}</Link>
           </nav>
           <Link className="header-cta" href="/#kontakt">
@@ -67,6 +68,7 @@ export function SiteHeader({ content }: { content: SiteContent }) {
               <Link href="/ispiti">{labels.navigationExams}</Link>
               <Link href="/usluge">{labels.navigationServices}</Link>
               <Link href="/#o-meni">{labels.navigationAbout}</Link>
+              <Link href="/#utisci">{labels.navigationTestimonials}</Link>
               <Link href="/#kontakt">{labels.navigationContact}</Link>
             </nav>
           </details>

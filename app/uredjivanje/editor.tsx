@@ -257,6 +257,7 @@ export function Editor({
             <Field label="Navigacija — ispiti" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
             <Field label="Navigacija — usluge" value={content.labels.navigationServices} onChange={(value) => updateContent((draft) => { draft.labels.navigationServices = value; })} />
             <Field label="Navigacija — o meni" value={content.labels.navigationAbout} onChange={(value) => updateContent((draft) => { draft.labels.navigationAbout = value; })} />
+            <Field label="Navigacija — utisci" value={content.labels.navigationTestimonials} onChange={(value) => updateContent((draft) => { draft.labels.navigationTestimonials = value; })} />
             <Field label="Navigacija — kontakt" value={content.labels.navigationContact} onChange={(value) => updateContent((draft) => { draft.labels.navigationContact = value; })} />
             <Field label="Dugme u zaglavlju" value={content.labels.headerCta} onChange={(value) => updateContent((draft) => { draft.labels.headerCta = value; })} />
             <Field label="Mobilna traka — WhatsApp" value={content.labels.mobileCtaWhatsApp} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaWhatsApp = value; })} />

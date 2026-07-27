@@ -84,6 +84,7 @@ export type SiteContent = {
     navigationExams: string;
     navigationServices: string;
     navigationAbout: string;
+    navigationTestimonials: string;
     navigationContact: string;
     headerCta: string;
     mobileMenu: string;
@@ -202,7 +203,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 7,
+  schemaVersion: 8,
   seo: {
     pageTitle: "Online časovi engleskog jezika | Željko Đokić",
     metaDescription:
@@ -233,6 +234,7 @@ export const defaultContent: SiteContent = {
     navigationExams: "Ispiti",
     navigationServices: "Jezičke usluge",
     navigationAbout: "O meni",
+    navigationTestimonials: "Utisci",
     navigationContact: "Kontakt",
     headerCta: "Zakažite razgovor",
     mobileMenu: "Meni",
