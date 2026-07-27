@@ -166,14 +166,6 @@ export default async function Home() {
               <span className="accent-dot">.</span>
             </h1>
             <p className="hero-lede">{hero.lede}</p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#kontakt">
-                {hero.primaryCta} <Arrow />
-              </a>
-              <a className="text-link" href="#programi">
-                {hero.secondaryCta} <Arrow />
-              </a>
-            </div>
           </div>
           <div className="hero-art" aria-hidden="true">
             <div className="paper-note">
