@@ -1,12 +1,26 @@
 "use client";
 
-import type { MouseEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
 
-function getPrefilledMessage(href: string) {
+function getViberLinkParts(href: string) {
   try {
-    return new URL(href).searchParams.get("text")?.trim() || "";
+    const url = new URL(href);
+    const message = url.searchParams.get("text")?.trim() || "";
+
+    // Viber does not reliably support the text parameter on personal-chat
+    // links. Keep it only as the editable message source and launch the clean
+    // contact link so the app opens without waiting for an async clipboard call.
+    url.searchParams.delete("text");
+
+    return {
+      message,
+      launchHref: url.toString(),
+    };
   } catch {
-    return "";
+    return {
+      message: "",
+      launchHref: href,
+    };
   }
 }
 
@@ -29,24 +43,23 @@ export function ViberLink({
   href: string;
   children: ReactNode;
 }) {
-  async function handleClick(event: MouseEvent<HTMLAnchorElement>) {
-    const message = getPrefilledMessage(href);
+  const { launchHref, message } = getViberLinkParts(href);
+
+  function handleClick() {
     if (!message) return;
 
-    event.preventDefault();
-
+    // Run synchronously inside the user's click. The anchor's normal action
+    // then opens Viber immediately, preserving the browser's user activation.
     try {
-      await navigator.clipboard.writeText(message);
-    } catch {
       copyWithTextarea(message);
+    } catch {
+      void navigator.clipboard?.writeText(message).catch(() => undefined);
     }
-
-    window.location.href = href;
   }
 
   return (
     <a
-      href={href}
+      href={launchHref}
       onClick={handleClick}
       title="Pripremljena poruka će biti kopirana — nalepite je u Viber razgovor."
     >
