@@ -1887,6 +1887,75 @@ summary:focus-visible {
   padding-block: 14vh;
 }
 
+.editor-gate > p:not(.eyebrow) {
+  max-width: 660px;
+  color: var(--muted);
+}
+
+.editor-login {
+  max-width: 660px;
+  margin: 34px 0 28px;
+  padding: 24px;
+  background: var(--paper-light);
+  border: 1px solid var(--line);
+}
+
+.editor-login label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.editor-login > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.editor-login input {
+  min-width: 0;
+  padding: 13px 14px;
+  background: white;
+  border: 1px solid rgba(18, 38, 58, 0.28);
+  border-right: 0;
+  border-radius: 0;
+  color: var(--ink);
+  font: inherit;
+}
+
+.editor-login input:focus {
+  position: relative;
+  border-color: var(--cobalt);
+  outline: 2px solid rgba(53, 89, 183, 0.18);
+}
+
+.editor-login button {
+  padding: 13px 20px;
+  background: var(--cobalt);
+  border: 1px solid var(--cobalt);
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.editor-login button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.editor-login p {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.editor-login .editor-login-error {
+  color: #9a2c24;
+}
+
 @media (max-width: 900px) {
   .catalog-hero {
     grid-template-columns: 1fr;
@@ -1952,6 +2021,15 @@ summary:focus-visible {
   .editor-grid,
   .editor-pair {
     grid-template-columns: 1fr;
+  }
+
+  .editor-login > div {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-login input {
+    border-right: 1px solid rgba(18, 38, 58, 0.28);
+    border-bottom: 0;
   }
 
   .editor-section > summary {

@@ -5,6 +5,7 @@ import {
   getCloudflareUser,
 } from "@/app/cloudflare-auth";
 import { Editor } from "@/app/uredjivanje/editor";
+import { LoginForm } from "@/app/uredjivanje/login-form";
 import { getSiteContent } from "@/lib/site-content";
 
 export const dynamic = "force-dynamic";
@@ -14,20 +15,18 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const OWNER_EMAIL = "zeljko.d.djokic@gmail.com";
-
 export default async function EditingPage() {
   const user = await getCloudflareUser();
-  if (!user || user.email.toLowerCase() !== OWNER_EMAIL) {
+  if (!user) {
     return (
       <main className="editor-gate">
         <p className="eyebrow">Zaštićena stranica</p>
-        <h1>Pristup uredničkom panelu nije odobren.</h1>
+        <h1>Prijavite se u urednički panel.</h1>
         <p>
-          Prijavite se Cloudflare Access nalogom
-          {" "}zeljko.d.djokic@gmail.com.
+          Ovde možete menjati cene, tekstove, kontakt podatke, FAQ i link
+          za Google kalendar.
         </p>
-        {user ? <p>Trenutno ste prijavljeni kao {user.email}.</p> : null}
+        <LoginForm />
         <Link href="/">Vratite se na sajt</Link>
       </main>
     );
