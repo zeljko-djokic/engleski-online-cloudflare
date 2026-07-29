@@ -173,14 +173,6 @@ export default async function Home() {
               <span className="accent-dot">.</span>
             </h1>
             <p className="hero-lede">{hero.lede}</p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#kontakt">
-                {hero.primaryCta} <Arrow />
-              </a>
-              <a className="text-link" href="#programi">
-                {hero.secondaryCta} <Arrow />
-              </a>
-            </div>
           </div>
           <div className="hero-art" aria-hidden="true">
             <div className="paper-note">
@@ -264,10 +256,19 @@ export default async function Home() {
                 <ExamBadge
                   slug="ielts"
                   label="Academic English"
-                  title="IELTS i TOEFL"
+                  title="IELTS"
                 />
-                <h3>IELTS i TOEFL</h3>
+                <h3>IELTS</h3>
                 <p>Priprema prema ciljnom rezultatu i roku do polaganja.</p>
+              </article>
+              <article>
+                <ExamBadge
+                  slug="toefl"
+                  label="Academic English"
+                  title="TOEFL"
+                />
+                <h3>TOEFL</h3>
+                <p>Akademski engleski i strategija za TOEFL iBT.</p>
               </article>
               <article>
                 <ExamBadge

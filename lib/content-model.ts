@@ -33,6 +33,7 @@ export type LanguageService = {
   unit: string;
   headline: string;
   intro: string;
+  asideText: string;
   includes: string[];
   process: string[];
 };
@@ -81,8 +82,10 @@ export type SiteContent = {
     skipLink: string;
     navigationHome: string;
     navigationCourses: string;
+    navigationCoursePrograms: string;
     navigationExams: string;
     navigationServices: string;
+    navigationPricing: string;
     navigationAbout: string;
     navigationTestimonials: string;
     navigationContact: string;
@@ -195,6 +198,7 @@ export type SiteContent = {
     eyebrow: string;
     headline: string;
     intro: string;
+    contactsTitle: string;
     emailLabel: string;
     whatsappLabel: string;
     viberLabel: string;
@@ -204,7 +208,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 11,
+  schemaVersion: 12,
   seo: {
     pageTitle:
       "Online nastava i priprema za međunarodne ispite | Željko Đokić",
@@ -226,15 +230,17 @@ export const defaultContent: SiteContent = {
       "https://viber.me/381637394618?draft=Zdravo%20%C5%BDeljko%2C%20javljam%20se%20u%20vezi%20sa%20uslugama%20sa%20sajta.",
     linkedinUrl: "https://www.linkedin.com/in/%C5%BEeljko-%C4%91oki%C4%87/",
     calendarUrl: "",
-    calendarLabel: "Zakažite termin preko Google kalendara",
+    calendarLabel: "Izaberite termin u Google kalendaru",
   },
   labels: {
     brandName: "Engleski Online",
     skipLink: "Pređite na glavni sadržaj",
     navigationHome: "Početna",
     navigationCourses: "Online nastava",
+    navigationCoursePrograms: "Programi online nastave",
     navigationExams: "Priprema za međunarodne ispite",
     navigationServices: "Jezičke usluge",
+    navigationPricing: "Cenovnik",
     navigationAbout: "O meni",
     navigationTestimonials: "Utisci",
     navigationContact: "Kontakt",
@@ -577,6 +583,8 @@ export const defaultContent: SiteContent = {
       headline: "Prevod koji zvuči prirodno i čuva stručni smisao izvornika.",
       intro:
         "Pisano prevođenje sa srpskog na engleski i sa engleskog na srpski, uz terminološku doslednost, jezičku reviziju i tehničku obradu dokumenta.",
+      asideText:
+        "Cena i vreme rada obračunavaju se po prevodilačkoj strani. Za detaljniji opis pogledajte odeljak „Cenovnik”. Pošaljite dokument, željeni rok i jezičku kombinaciju. Odgovoriću vam sa procenom i preciznom ponudom.",
       includes: [
         "Poslovna korespondencija, CV i propratna pisma",
         "Medicinska i farmaceutska dokumentacija",
@@ -601,6 +609,8 @@ export const defaultContent: SiteContent = {
       headline: "Jasan, dosledan i profesionalno oblikovan tekst.",
       intro:
         "Nivo intervencije dogovara se prema stanju dokumenta i njegovoj nameni — od završne korekture do dublje stilske i strukturne redakture.",
+      asideText:
+        "Cena i vreme rada obračunavaju se po prevodilačkoj strani. Za detaljniji opis pogledajte odeljak „Cenovnik”. Pošaljite dokument, željeni rok i jezičku kombinaciju. Odgovoriću vam sa procenom i preciznom ponudom.",
       includes: [
         "Lektura gramatike, pravopisa i interpunkcije",
         "Korektura slovnih, tehničkih i tipografskih grešaka",
@@ -625,6 +635,8 @@ export const defaultContent: SiteContent = {
       headline: "Pouzdana jezička podrška u razgovoru i profesionalnom susretu.",
       intro:
         "Konsekutivno i simultano prevođenje prilagođeno temi, učesnicima i formatu događaja, uz prethodnu terminološku pripremu.",
+      asideText:
+        "Kod simultanog prevođenja dužeg od 60–90 minuta angažuje se tim od dva prevodioca, uz smene na 15–30 minuta, kako bi kvalitet ostao ujednačen.\n\nAgendu, prezentacije, govore, glosare i druge materijale potrebno je dostaviti 3–5 dana unapred radi terminološke pripreme.\n\nJasan zvuk, profesionalna oprema i direktan pregled govornika su neophodni; za onlajn događaje potrebni su stabilna veza i platforma sa kanalima za prevođenje.",
       includes: [
         "Poslovni razgovori i sastanci",
         "Stručne obuke i prezentacije",
@@ -656,7 +668,7 @@ export const defaultContent: SiteContent = {
     groupDescription:
       "Za male grupe od 2 do 6 polaznika; popust se obračunava po osobi.",
     languageServiceDescription:
-      "Prema 250 reči, uz ponudu pre početka rada.",
+      "Prevodilačka strana iznosi 250 reči, pa font, veličina slova, prored i prazni redovi ne utiču na obračun. Broj prevodilačkih strana dobija se deljenjem broja reči u gotovom dokumentu sa 250 (na primer, 7.000 reči ÷ 250 = 28 prevodilačkih strana).",
     duration: "60 minuta",
   },
   testimonials: {
@@ -700,15 +712,15 @@ export const defaultContent: SiteContent = {
     },
   ],
   contact: {
-    eyebrow: "Kontakt",
-    headline:
-      "Pošaljite dokument ili opišite događaj, željeni rok i jezičku kombinaciju.",
+    eyebrow: "Zakazivanje",
+    headline: "Zakažite Vaš klizni termin časa",
     intro:
-      "Odgovoriću vam sa procenom i preciznom ponudom.",
+      "Izaberite raspoloživ termin koji Vam odgovara i potvrdite ga preko Google kalendara.",
+    contactsTitle: "Kontakt",
     emailLabel: "Pošaljite mejl",
     whatsappLabel: "WhatsApp",
     viberLabel: "Viber",
     phoneLabel: "Telefon",
-    calendarPlaceholder: "Google Calendar link biće dostupan ovde",
+    calendarPlaceholder: "Google Calendar raspored biće dostupan ovde",
   },
 };

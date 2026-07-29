@@ -117,12 +117,16 @@ export function DetailPage({
             </div>
             <aside className="detail-aside">
               {price && (
-                <div>
+                <div className="detail-aside-price">
                   <span>{price.label}</span>
                   <strong>{price.value}</strong>
                 </div>
               )}
-              <p>{asideText ?? content.labels.detailAsideText}</p>
+              <div className="detail-aside-copy">
+                {(asideText || content.labels.detailAsideText)
+                  .split(/\n{2,}/u)
+                  .map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
               <a href="#kontakt">{content.labels.detailInquiryCta} <Arrow /></a>
             </aside>
           </div>

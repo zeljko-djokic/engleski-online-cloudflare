@@ -227,6 +227,75 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 11;
   }
 
+  if (version < 12) {
+    source.global = {
+      ...(
+        source.global &&
+        typeof source.global === "object" &&
+        !Array.isArray(source.global)
+          ? (source.global as Record<string, unknown>)
+          : {}
+      ),
+      calendarLabel: defaultContent.global.calendarLabel,
+    };
+
+    source.labels = {
+      ...(
+        source.labels &&
+        typeof source.labels === "object" &&
+        !Array.isArray(source.labels)
+          ? (source.labels as Record<string, unknown>)
+          : {}
+      ),
+      navigationCoursePrograms:
+        defaultContent.labels.navigationCoursePrograms,
+      navigationPricing: defaultContent.labels.navigationPricing,
+    };
+
+    source.pricing = {
+      ...(
+        source.pricing &&
+        typeof source.pricing === "object" &&
+        !Array.isArray(source.pricing)
+          ? (source.pricing as Record<string, unknown>)
+          : {}
+      ),
+      languageServiceDescription:
+        defaultContent.pricing.languageServiceDescription,
+    };
+
+    source.contact = {
+      ...(
+        source.contact &&
+        typeof source.contact === "object" &&
+        !Array.isArray(source.contact)
+          ? (source.contact as Record<string, unknown>)
+          : {}
+      ),
+      eyebrow: defaultContent.contact.eyebrow,
+      headline: defaultContent.contact.headline,
+      intro: defaultContent.contact.intro,
+      contactsTitle: defaultContent.contact.contactsTitle,
+      calendarPlaceholder: defaultContent.contact.calendarPlaceholder,
+    };
+
+    if (Array.isArray(source.services)) {
+      source.services = source.services.map((item) => {
+        if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+        const service = item as Record<string, unknown>;
+        const defaultService = defaultContent.services.find(
+          (candidate) => candidate.slug === service.slug,
+        );
+
+        return defaultService
+          ? { ...service, asideText: defaultService.asideText }
+          : service;
+      });
+    }
+
+    source.schemaVersion = 12;
+  }
+
   return source;
 }
 

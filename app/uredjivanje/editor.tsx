@@ -254,8 +254,10 @@ export function Editor({
             <Field label="Link za preskakanje navigacije" value={content.labels.skipLink} onChange={(value) => updateContent((draft) => { draft.labels.skipLink = value; })} />
             <Field label="Navigacija — početna" value={content.labels.navigationHome} onChange={(value) => updateContent((draft) => { draft.labels.navigationHome = value; })} />
             <Field label="Navigacija — online nastava" value={content.labels.navigationCourses} onChange={(value) => updateContent((draft) => { draft.labels.navigationCourses = value; })} />
+            <Field label="Podmeni — programi online nastave" value={content.labels.navigationCoursePrograms} onChange={(value) => updateContent((draft) => { draft.labels.navigationCoursePrograms = value; })} />
             <Field label="Navigacija — priprema za međunarodne ispite" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
             <Field label="Navigacija — usluge" value={content.labels.navigationServices} onChange={(value) => updateContent((draft) => { draft.labels.navigationServices = value; })} />
+            <Field label="Navigacija — cenovnik" value={content.labels.navigationPricing} onChange={(value) => updateContent((draft) => { draft.labels.navigationPricing = value; })} />
             <Field label="Navigacija — o meni" value={content.labels.navigationAbout} onChange={(value) => updateContent((draft) => { draft.labels.navigationAbout = value; })} />
             <Field label="Navigacija — utisci" value={content.labels.navigationTestimonials} onChange={(value) => updateContent((draft) => { draft.labels.navigationTestimonials = value; })} />
             <Field label="Navigacija — kontakt" value={content.labels.navigationContact} onChange={(value) => updateContent((draft) => { draft.labels.navigationContact = value; })} />
@@ -459,6 +461,7 @@ export function Editor({
               <Field label="Jedinica obračuna" value={service.unit} onChange={(value) => setService(index, { ...service, unit: value })} />
               <Field label="Glavni naslov" value={service.headline} multiline onChange={(value) => setService(index, { ...service, headline: value })} />
               <Field label="Uvod" value={service.intro} multiline onChange={(value) => setService(index, { ...service, intro: value })} />
+              <Field label="Tekst u plavom polju" value={service.asideText} multiline onChange={(value) => setService(index, { ...service, asideText: value })} />
             </div>
             <ListField label="Šta usluga obuhvata" value={service.includes} onChange={(value) => setService(index, { ...service, includes: value })} />
             <ListField label="Tok saradnje" value={service.process} onChange={(value) => setService(index, { ...service, process: value })} />
@@ -563,6 +566,7 @@ export function Editor({
             <Field label="Nadnaslov" value={content.contact.eyebrow} onChange={(value) => updateContent((draft) => { draft.contact.eyebrow = value; })} />
             <Field label="Naslov" value={content.contact.headline} multiline onChange={(value) => updateContent((draft) => { draft.contact.headline = value; })} />
             <Field label="Uvod" value={content.contact.intro} multiline onChange={(value) => updateContent((draft) => { draft.contact.intro = value; })} />
+            <Field label="Naslov iznad kontakata" value={content.contact.contactsTitle} onChange={(value) => updateContent((draft) => { draft.contact.contactsTitle = value; })} />
             <Field label="Mejl — oznaka" value={content.contact.emailLabel} onChange={(value) => updateContent((draft) => { draft.contact.emailLabel = value; })} />
             <Field label="WhatsApp — oznaka" value={content.contact.whatsappLabel} onChange={(value) => updateContent((draft) => { draft.contact.whatsappLabel = value; })} />
             <Field label="Viber — oznaka" value={content.contact.viberLabel} onChange={(value) => updateContent((draft) => { draft.contact.viberLabel = value; })} />

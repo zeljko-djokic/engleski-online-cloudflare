@@ -27,7 +27,9 @@ export function ExamBadge({
         ? "toefl"
         : "sat";
   const monogram = family === "cambridge"
-    ? title.startsWith("C2") ? "C2" : "C1"
+    ? title.includes("C1") && title.includes("C2")
+      ? "C"
+      : title.startsWith("C2") ? "C2" : "C1"
     : family.toUpperCase();
 
   return (
@@ -52,9 +54,15 @@ export function SiteHeader({ content }: { content: SiteContent }) {
           </Link>
           <nav className="desktop-nav" aria-label="Glavna navigacija">
             <Link href="/">{labels.navigationHome}</Link>
-            <Link href="/kursevi">{labels.navigationCourses}</Link>
-            <Link href="/ispiti">{labels.navigationExams}</Link>
+            <div className="nav-dropdown">
+              <Link href="/kursevi">{labels.navigationCourses}</Link>
+              <div className="nav-submenu">
+                <Link href="/kursevi">{labels.navigationCoursePrograms}</Link>
+                <Link href="/ispiti">{labels.navigationExams}</Link>
+              </div>
+            </div>
             <Link href="/usluge">{labels.navigationServices}</Link>
+            <Link href="/cenovnik">{labels.navigationPricing}</Link>
             <Link href="/#o-meni">{labels.navigationAbout}</Link>
             <Link href="/#utisci">{labels.navigationTestimonials}</Link>
             <Link href="/#kontakt">{labels.navigationContact}</Link>
@@ -65,9 +73,13 @@ export function SiteHeader({ content }: { content: SiteContent }) {
           <details className="mobile-menu">
             <summary>{labels.mobileMenu}</summary>
             <nav aria-label="Mobilna navigacija">
-              <Link href="/kursevi">{labels.navigationCourses}</Link>
-              <Link href="/ispiti">{labels.navigationExams}</Link>
+              <details className="mobile-submenu">
+                <summary>{labels.navigationCourses}</summary>
+                <Link href="/kursevi">{labels.navigationCoursePrograms}</Link>
+                <Link href="/ispiti">{labels.navigationExams}</Link>
+              </details>
               <Link href="/usluge">{labels.navigationServices}</Link>
+              <Link href="/cenovnik">{labels.navigationPricing}</Link>
               <Link href="/#o-meni">{labels.navigationAbout}</Link>
               <Link href="/#utisci">{labels.navigationTestimonials}</Link>
               <Link href="/#kontakt">{labels.navigationContact}</Link>
@@ -84,7 +96,7 @@ export function ContactSection({ content }: { content: SiteContent }) {
   return (
     <section className="contact-section" id="kontakt">
       <div className="shell contact-layout">
-        <div>
+        <div className="contact-booking">
           <p className="eyebrow">{contact.eyebrow}</p>
           <h2>{contact.headline}</h2>
           <p>{contact.intro}</p>
@@ -97,32 +109,40 @@ export function ContactSection({ content }: { content: SiteContent }) {
             >
               {global.calendarLabel} <Arrow />
             </a>
-          ) : null}
+          ) : (
+            <div className="calendar-placeholder">
+              <span>{labels.calendarProviderLabel}</span>
+              <strong>{contact.calendarPlaceholder}</strong>
+            </div>
+          )}
         </div>
-        <div className="contact-actions">
-          <a
-            className="contact-primary"
-            href={`mailto:${global.email}?subject=${encodeURIComponent(labels.contactMailSubject)}`}
-          >
-            <span>{contact.emailLabel}</span>
-            <strong>{global.email}</strong>
-            <Arrow />
-          </a>
-          <a href={global.whatsappUrl} target="_blank" rel="noreferrer">
-            <span>{contact.whatsappLabel}</span>
-            <strong>{global.phoneDisplay}</strong>
-            <Arrow />
-          </a>
-          <ViberLink href={global.viberUrl}>
-            <span>{contact.viberLabel}</span>
-            <strong>{global.phoneDisplay}</strong>
-            <Arrow />
-          </ViberLink>
-          <a href={`tel:${global.phoneLink}`}>
-            <span>{contact.phoneLabel}</span>
-            <strong>{global.phoneDisplay}</strong>
-            <Arrow />
-          </a>
+        <div className="contact-list">
+          <h2>{contact.contactsTitle}</h2>
+          <div className="contact-actions">
+            <a
+              className="contact-primary"
+              href={`mailto:${global.email}?subject=${encodeURIComponent(labels.contactMailSubject)}`}
+            >
+              <span>{contact.emailLabel}</span>
+              <strong>{global.email}</strong>
+              <Arrow />
+            </a>
+            <a href={global.whatsappUrl} target="_blank" rel="noreferrer">
+              <span>{contact.whatsappLabel}</span>
+              <strong>{global.phoneDisplay}</strong>
+              <Arrow />
+            </a>
+            <ViberLink href={global.viberUrl}>
+              <span>{contact.viberLabel}</span>
+              <strong>{global.phoneDisplay}</strong>
+              <Arrow />
+            </ViberLink>
+            <a href={`tel:${global.phoneLink}`}>
+              <span>{contact.phoneLabel}</span>
+              <strong>{global.phoneDisplay}</strong>
+              <Arrow />
+            </a>
+          </div>
         </div>
       </div>
     </section>
