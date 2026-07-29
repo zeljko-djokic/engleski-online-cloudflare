@@ -253,8 +253,8 @@ export function Editor({
             <Field label="Naziv sajta" value={content.labels.brandName} onChange={(value) => updateContent((draft) => { draft.labels.brandName = value; })} />
             <Field label="Link za preskakanje navigacije" value={content.labels.skipLink} onChange={(value) => updateContent((draft) => { draft.labels.skipLink = value; })} />
             <Field label="Navigacija — početna" value={content.labels.navigationHome} onChange={(value) => updateContent((draft) => { draft.labels.navigationHome = value; })} />
-            <Field label="Navigacija — kursevi" value={content.labels.navigationCourses} onChange={(value) => updateContent((draft) => { draft.labels.navigationCourses = value; })} />
-            <Field label="Navigacija — međunarodni ispiti" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
+            <Field label="Navigacija — online nastava" value={content.labels.navigationCourses} onChange={(value) => updateContent((draft) => { draft.labels.navigationCourses = value; })} />
+            <Field label="Navigacija — priprema za međunarodne ispite" value={content.labels.navigationExams} onChange={(value) => updateContent((draft) => { draft.labels.navigationExams = value; })} />
             <Field label="Navigacija — usluge" value={content.labels.navigationServices} onChange={(value) => updateContent((draft) => { draft.labels.navigationServices = value; })} />
             <Field label="Navigacija — o meni" value={content.labels.navigationAbout} onChange={(value) => updateContent((draft) => { draft.labels.navigationAbout = value; })} />
             <Field label="Navigacija — utisci" value={content.labels.navigationTestimonials} onChange={(value) => updateContent((draft) => { draft.labels.navigationTestimonials = value; })} />
@@ -262,12 +262,13 @@ export function Editor({
             <Field label="Dugme u zaglavlju" value={content.labels.headerCta} onChange={(value) => updateContent((draft) => { draft.labels.headerCta = value; })} />
             <Field label="Mobilna traka — WhatsApp" value={content.labels.mobileCtaWhatsApp} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaWhatsApp = value; })} />
             <Field label="Mobilna traka — Viber" value={content.labels.mobileCtaViber} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaViber = value; })} />
-            <Field label="Mobilna traka — zakazivanje" value={content.labels.mobileCtaBooking} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaBooking = value; })} />
+            <Field label="Mobilna traka — upit" value={content.labels.mobileCtaBooking} onChange={(value) => updateContent((draft) => { draft.labels.mobileCtaBooking = value; })} />
             <Field label="Mobilni meni" value={content.labels.mobileMenu} onChange={(value) => updateContent((draft) => { draft.labels.mobileMenu = value; })} />
             <Field label="Rečnik — vrsta reči" value={content.labels.dictionaryPartOfSpeech} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryPartOfSpeech = value; })} />
             <Field label="Rečnik — reč" value={content.labels.dictionaryWord} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryWord = value; })} />
             <Field label="Rečnik — izgovor" value={content.labels.dictionaryPronunciation} onChange={(value) => updateContent((draft) => { draft.labels.dictionaryPronunciation = value; })} />
             <Field label="Podnožje — opis" value={content.labels.footerTagline} onChange={(value) => updateContent((draft) => { draft.labels.footerTagline = value; })} />
+            <Field label="Podnožje — politika privatnosti" value={content.labels.privacyPolicyLabel} onChange={(value) => updateContent((draft) => { draft.labels.privacyPolicyLabel = value; })} />
             <Field label="Podnožje — autorski tekst" value={content.labels.footerCopyright} onChange={(value) => updateContent((draft) => { draft.labels.footerCopyright = value; })} />
             <Field label="Naslov mejla sa sajta" value={content.labels.contactMailSubject} onChange={(value) => updateContent((draft) => { draft.labels.contactMailSubject = value; })} />
             <Field label="Naziv kalendara" value={content.labels.calendarProviderLabel} onChange={(value) => updateContent((draft) => { draft.labels.calendarProviderLabel = value; })} />
@@ -342,12 +343,12 @@ export function Editor({
         <EditorSection title="Naslovi sekcija na početnoj">
           <div className="editor-grid">
             {([
-              ["programsEyebrow", "Kursevi — nadnaslov"],
-              ["programsHeadline", "Kursevi — naslov"],
-              ["programsIntro", "Kursevi — uvod"],
-              ["examsEyebrow", "Međunarodni ispiti — nadnaslov"],
-              ["examsHeadline", "Ispiti — naslov"],
-              ["examsIntro", "Ispiti — uvod"],
+              ["programsEyebrow", "Online nastava — nadnaslov"],
+              ["programsHeadline", "Online nastava — naslov"],
+              ["programsIntro", "Online nastava — uvod"],
+              ["examsEyebrow", "Priprema za ispite — nadnaslov"],
+              ["examsHeadline", "Priprema za ispite — naslov"],
+              ["examsIntro", "Priprema za ispite — uvod"],
               ["servicesEyebrow", "Usluge — nadnaslov"],
               ["servicesHeadline", "Usluge — naslov"],
               ["servicesIntro", "Usluge — uvod"],
@@ -458,7 +459,6 @@ export function Editor({
               <Field label="Jedinica obračuna" value={service.unit} onChange={(value) => setService(index, { ...service, unit: value })} />
               <Field label="Glavni naslov" value={service.headline} multiline onChange={(value) => setService(index, { ...service, headline: value })} />
               <Field label="Uvod" value={service.intro} multiline onChange={(value) => setService(index, { ...service, intro: value })} />
-              <Field label="Bočna napomena" value={service.asideText} multiline onChange={(value) => setService(index, { ...service, asideText: value })} />
             </div>
             <ListField label="Šta usluga obuhvata" value={service.includes} onChange={(value) => setService(index, { ...service, includes: value })} />
             <ListField label="Tok saradnje" value={service.process} onChange={(value) => setService(index, { ...service, process: value })} />

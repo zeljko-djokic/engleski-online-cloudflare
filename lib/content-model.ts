@@ -33,7 +33,6 @@ export type LanguageService = {
   unit: string;
   headline: string;
   intro: string;
-  asideText: string;
   includes: string[];
   process: string[];
 };
@@ -131,6 +130,7 @@ export type SiteContent = {
     examFormatTitle: string;
     calendarProviderLabel: string;
     footerTagline: string;
+    privacyPolicyLabel: string;
     footerCopyright: string;
     contactMailSubject: string;
   };
@@ -206,14 +206,15 @@ export type SiteContent = {
 export const defaultContent: SiteContent = {
   schemaVersion: 11,
   seo: {
-    pageTitle: "Online časovi engleskog jezika | Željko Đokić",
+    pageTitle:
+      "Online nastava i priprema za međunarodne ispite | Željko Đokić",
     metaDescription:
-      "Individualni online časovi engleskog, priprema međunarodnih ispita, prevođenje, lektura i korektura — Željko Đokić, master filolog anglista.",
+      "Online nastava engleskog, individualna priprema za Cambridge C1 i C2, IELTS, TOEFL i SAT, kao i EN–SR jezičke usluge — Željko Đokić.",
     shareTitle: "Engleski Online — Željko Đokić",
     shareDescription:
-      "Individualni online časovi, priprema međunarodnih ispita i stručne jezičke usluge prilagođene vašem cilju.",
+      "Online nastava, priprema za međunarodne ispite i stručne jezičke usluge prilagođene vašem cilju.",
     shareImageAlt:
-      "Engleski Online — individualna nastava, međunarodni ispiti i jezičke usluge Željka Đokića",
+      "Engleski Online — online nastava, priprema za međunarodne ispite i jezičke usluge Željka Đokića",
   },
   global: {
     email: "zeljko.d.djokic@gmail.com",
@@ -231,17 +232,17 @@ export const defaultContent: SiteContent = {
     brandName: "Engleski Online",
     skipLink: "Pređite na glavni sadržaj",
     navigationHome: "Početna",
-    navigationCourses: "Kursevi",
-    navigationExams: "Međunarodni ispiti",
+    navigationCourses: "Online nastava",
+    navigationExams: "Priprema za međunarodne ispite",
     navigationServices: "Jezičke usluge",
     navigationAbout: "O meni",
     navigationTestimonials: "Utisci",
     navigationContact: "Kontakt",
-    headerCta: "Zakažite razgovor",
+    headerCta: "Pošaljite upit",
     mobileMenu: "Meni",
     mobileCtaWhatsApp: "WhatsApp",
     mobileCtaViber: "Viber",
-    mobileCtaBooking: "Zakažite razgovor",
+    mobileCtaBooking: "Pošaljite upit",
     dictionaryPartOfSpeech: "noun",
     dictionaryWord: "language",
     dictionaryPronunciation: "/ˈlæŋɡwɪdʒ/",
@@ -251,7 +252,7 @@ export const defaultContent: SiteContent = {
       "Fleksibilni termini",
       "Materijali uključeni",
     ],
-    examsAllCta: "Pogledajte sve međunarodne ispite",
+    examsAllCta: "Pogledajte sve programe pripreme",
     serviceNote:
       "Konačna ponuda zavisi od obima, složenosti i roka. Dokumenti se pregledaju pre potvrde cene, a sadržaj se tretira poverljivo.",
     aboutMark: "ŽĐ",
@@ -265,9 +266,9 @@ export const defaultContent: SiteContent = {
     pricingPackageLabel: "Paket",
     pricingGroupsLabel: "Male grupe",
     pricingServicesLabel: "Jezičke usluge",
-    pricingCta: "Zakažite razgovor",
+    pricingCta: "Pošaljite upit",
     catalogDetailCta: "Detaljan opis",
-    detailPrimaryCta: "Zakažite uvodni razgovor",
+    detailPrimaryCta: "Pošaljite upit",
     detailAsideText:
       "Program i dinamika rada prilagođavaju se vašem početnom nivou, cilju i vremenu koje imate na raspolaganju.",
     detailInquiryCta: "Pošaljite upit",
@@ -281,36 +282,38 @@ export const defaultContent: SiteContent = {
     servicePriceLabel: "Cena",
     serviceIncludesTitle: "Usluga obuhvata",
     serviceProcessTitle: "Kako izgleda saradnja",
-    examBackLabel: "Svi međunarodni ispiti",
+    examBackLabel: "Sve pripreme za međunarodne ispite",
     examPriceLabel: "Cena individualnog časa",
     examFocusTitle: "Na čemu radimo",
     examFormatTitle: "Kako izgleda priprema",
     calendarProviderLabel: "Google Calendar",
-    footerTagline: "Individualna nastava i stručne jezičke usluge.",
+    footerTagline:
+      "Online nastava, priprema za međunarodne ispite i stručne jezičke usluge.",
+    privacyPolicyLabel: "Politika privatnosti",
     footerCopyright: "© 2026 Željko Đokić",
     contactMailSubject: "Upit sa sajta Engleski Online",
   },
   hero: {
-    eyebrow: "Individualna nastava · Prevođenje · Lektura",
+    eyebrow: "Online nastava · Međunarodni ispiti · Jezičke usluge",
     headlineLine1: "Engleski koji",
     headlineLine2: "radi za vas",
     lede:
       "Individualni online časovi i stručne jezičke usluge, prilagođeni vašem cilju, nivou i rasporedu.",
-    primaryCta: "Zakažite uvodni razgovor",
+    primaryCta: "Pošaljite upit",
     secondaryCta: "Pogledajte programe",
     credential: "master filolog anglista",
     experience: "13+ godina iskustva",
   },
   home: {
-    programsEyebrow: "Programi nastave",
-    programsHeadline: "Jasan plan. Praktičan rad. Merljiv napredak.",
+    programsEyebrow: "Online nastava engleskog jezika",
+    programsHeadline:
+      "Od opšteg i stručnog engleskog do međunarodnih ispita.",
     programsIntro:
-      "Svaki program počinje procenom nivoa i razgovorom o vašem cilju. Nastava se zatim oblikuje oko onoga što vam je zaista potrebno.",
-    examsEyebrow: "Međunarodni ispiti",
-    examsHeadline:
-      "Priprema koja vas uči kako da polažete — ne samo šta da učite.",
+      "Kursevi i specijalizovana priprema predstavljaju dve grane iste individualne online nastave, oblikovane prema vašem nivou, cilju i rasporedu.",
+    examsEyebrow: "Specijalizovani programi",
+    examsHeadline: "Priprema za međunarodne ispite",
     examsIntro:
-      "Dijagnostički test, individualni plan, rad po ispitnim celinama, probni zadaci i konkretna povratna informacija posle svakog koraka.",
+      "Individualna online priprema za Cambridge C1 Advanced i C2 Proficiency, IELTS, TOEFL i SAT, uz dijagnostiku, plan rada, probne zadatke i preciznu povratnu informaciju.",
     processEyebrow: "Kako radimo",
     processHeadline: "Od prvog razgovora do vidljivog napretka.",
     process: [
@@ -349,7 +352,8 @@ export const defaultContent: SiteContent = {
       "Radio sam sa učenicima, odraslim polaznicima i profesionalcima u osnovnom, srednjem, korporativnom i individualnom obrazovanju. Posebnu pažnju posvećujem prilagođavanju nastave, jasnom objašnjenju i povratnoj informaciji koja polazniku pokazuje sledeći korak.",
     education:
       "Master akademske studije engleskog jezika i književnosti",
-    exams: "C1 Advanced (CAE), IELTS, TOEFL i SAT",
+    exams:
+      "C1 Advanced (CAE), C2 Proficiency (CPE), IELTS, TOEFL i SAT",
     specialisms: "Poslovni, medicinski i farmaceutski engleski",
     translation:
       "Medicinska, farmaceutska, akademska i stručna dokumentacija",
@@ -573,8 +577,6 @@ export const defaultContent: SiteContent = {
       headline: "Prevod koji zvuči prirodno i čuva stručni smisao izvornika.",
       intro:
         "Pisano prevođenje sa srpskog na engleski i sa engleskog na srpski, uz terminološku doslednost, jezičku reviziju i tehničku obradu dokumenta.",
-      asideText:
-        "Prevodilačka strana obračunava se na 250 reči gotovog dokumenta. Broj strana dobija se deljenjem ukupnog broja reči sa 250, npr. 7.000 reči iznosi 28 prevodilačkih strana.",
       includes: [
         "Poslovna korespondencija, CV i propratna pisma",
         "Medicinska i farmaceutska dokumentacija",
@@ -599,8 +601,6 @@ export const defaultContent: SiteContent = {
       headline: "Jasan, dosledan i profesionalno oblikovan tekst.",
       intro:
         "Nivo intervencije dogovara se prema stanju dokumenta i njegovoj nameni — od završne korekture do dublje stilske i strukturne redakture.",
-      asideText:
-        "Kod tekstualnih usluga obračun se vezuje za 250 reči gotovog teksta. Pre potvrde cene pregleda se obim, složenost i nivo potrebne intervencije.",
       includes: [
         "Lektura gramatike, pravopisa i interpunkcije",
         "Korektura slovnih, tehničkih i tipografskih grešaka",
@@ -625,8 +625,6 @@ export const defaultContent: SiteContent = {
       headline: "Pouzdana jezička podrška u razgovoru i profesionalnom susretu.",
       intro:
         "Konsekutivno i simultano prevođenje prilagođeno temi, učesnicima i formatu događaja, uz prethodnu terminološku pripremu.",
-      asideText:
-        "Za usmeno prevođenje cena zavisi od trajanja, formata, potrebne pripreme, tehničkih uslova i broja prevodilaca po jezičkoj kombinaciji.",
       includes: [
         "Poslovni razgovori i sastanci",
         "Stručne obuke i prezentacije",
@@ -634,10 +632,10 @@ export const defaultContent: SiteContent = {
         "Online i dogovoreni događaji uživo",
       ],
       process: [
-        "Dogovor o temi, formatu, trajanju i potrebnom broju prevodilaca",
-        "Za događaje duže od 60 do 90 minuta preporučuje se dvočlani tim po jezičkoj kombinaciji, sa smenama na 15 do 30 minuta radi očuvanja tačnosti.",
-        "Materijale je najbolje dostaviti 3 do 5 dana ranije: agendu, spisak govornika, prezentacije, govore, glosare ili prethodne materijale.",
-        "Za simultano prevođenje neophodni su jasni tehnički uslovi: kvalitetan zvuk, profesionalna oprema ili platforma sa kanalima i vizuelni pregled govornika.",
+        "Dogovor o temi, formatu i trajanju",
+        "Dostavljanje materijala za pripremu",
+        "Terminološka priprema",
+        "Prevođenje u dogovoreno vreme",
       ],
     },
   ],
@@ -658,7 +656,7 @@ export const defaultContent: SiteContent = {
     groupDescription:
       "Za male grupe od 2 do 6 polaznika; popust se obračunava po osobi.",
     languageServiceDescription:
-      "Pisane usluge obračunavaju se po prevodilačkoj strani od 250 reči, uz ponudu pre početka rada.",
+      "Prema 250 reči, uz ponudu pre početka rada.",
     duration: "60 minuta",
   },
   testimonials: {
@@ -703,9 +701,10 @@ export const defaultContent: SiteContent = {
   ],
   contact: {
     eyebrow: "Kontakt",
-    headline: "Recite mi gde želite da stignete sa svojim engleskim.",
+    headline:
+      "Pošaljite dokument ili opišite događaj, željeni rok i jezičku kombinaciju.",
     intro:
-      "Odgovoriću vam sa predlogom programa, mogućim terminima i svim informacijama potrebnim za početak.",
+      "Odgovoriću vam sa procenom i preciznom ponudom.",
     emailLabel: "Pošaljite mejl",
     whatsappLabel: "WhatsApp",
     viberLabel: "Viber",

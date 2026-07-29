@@ -142,38 +142,87 @@ function migrateLegacyContent(value: unknown): unknown {
   }
 
   if (version < 11) {
-    if (Array.isArray(source.services)) {
-      source.services = source.services.map((item) => {
-        if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+    source.seo = {
+      ...(
+        source.seo &&
+        typeof source.seo === "object" &&
+        !Array.isArray(source.seo)
+          ? (source.seo as Record<string, unknown>)
+          : {}
+      ),
+      ...structuredClone(defaultContent.seo),
+    };
 
-        const service = { ...(item as Record<string, unknown>) };
-        const defaultService = defaultContent.services.find(
-          (candidate) => candidate.slug === service.slug,
-        );
+    source.labels = {
+      ...(
+        source.labels &&
+        typeof source.labels === "object" &&
+        !Array.isArray(source.labels)
+          ? (source.labels as Record<string, unknown>)
+          : {}
+      ),
+      navigationCourses: defaultContent.labels.navigationCourses,
+      navigationExams: defaultContent.labels.navigationExams,
+      headerCta: defaultContent.labels.headerCta,
+      mobileCtaBooking: defaultContent.labels.mobileCtaBooking,
+      examsAllCta: defaultContent.labels.examsAllCta,
+      pricingCta: defaultContent.labels.pricingCta,
+      detailPrimaryCta: defaultContent.labels.detailPrimaryCta,
+      examBackLabel: defaultContent.labels.examBackLabel,
+      footerTagline: defaultContent.labels.footerTagline,
+      privacyPolicyLabel: defaultContent.labels.privacyPolicyLabel,
+    };
 
-        if (defaultService) {
-          service.asideText = defaultService.asideText;
-        }
+    source.hero = {
+      ...(
+        source.hero &&
+        typeof source.hero === "object" &&
+        !Array.isArray(source.hero)
+          ? (source.hero as Record<string, unknown>)
+          : {}
+      ),
+      eyebrow: defaultContent.hero.eyebrow,
+      primaryCta: defaultContent.hero.primaryCta,
+    };
 
-        if (service.slug === "usmeno-prevodjenje" && defaultService) {
-          service.process = structuredClone(defaultService.process);
-        }
+    source.home = {
+      ...(
+        source.home &&
+        typeof source.home === "object" &&
+        !Array.isArray(source.home)
+          ? (source.home as Record<string, unknown>)
+          : {}
+      ),
+      programsEyebrow: defaultContent.home.programsEyebrow,
+      programsHeadline: defaultContent.home.programsHeadline,
+      programsIntro: defaultContent.home.programsIntro,
+      examsEyebrow: defaultContent.home.examsEyebrow,
+      examsHeadline: defaultContent.home.examsHeadline,
+      examsIntro: defaultContent.home.examsIntro,
+    };
 
-        return service;
-      });
-    }
+    source.about = {
+      ...(
+        source.about &&
+        typeof source.about === "object" &&
+        !Array.isArray(source.about)
+          ? (source.about as Record<string, unknown>)
+          : {}
+      ),
+      exams: defaultContent.about.exams,
+    };
 
-    if (
-      source.pricing &&
-      typeof source.pricing === "object" &&
-      !Array.isArray(source.pricing)
-    ) {
-      source.pricing = {
-        ...(source.pricing as Record<string, unknown>),
-        languageServiceDescription:
-          defaultContent.pricing.languageServiceDescription,
-      };
-    }
+    source.contact = {
+      ...(
+        source.contact &&
+        typeof source.contact === "object" &&
+        !Array.isArray(source.contact)
+          ? (source.contact as Record<string, unknown>)
+          : {}
+      ),
+      headline: defaultContent.contact.headline,
+      intro: defaultContent.contact.intro,
+    };
 
     source.schemaVersion = 11;
   }

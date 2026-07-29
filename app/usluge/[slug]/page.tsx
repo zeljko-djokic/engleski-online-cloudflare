@@ -9,7 +9,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const content = await getSiteContent();
   const service = content.services.find((item) => item.slug === slug);
-  return service ? { title: `${service.title} | ${content.labels.brandName}`, description: service.summary } : {};
+  return service
+    ? {
+        title: `${service.title} | ${content.labels.brandName}`,
+        description: service.summary,
+        alternates: { canonical: `/usluge/${service.slug}` },
+      }
+    : {};
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
@@ -25,7 +31,6 @@ export default async function ServiceDetailPage({ params }: Props) {
       title={service.headline}
       intro={service.intro}
       price={{ label: content.labels.servicePriceLabel, value: `${service.price} ${service.unit}` }}
-      asideText={service.asideText}
       backHref="/usluge"
       backLabel={content.labels.serviceBackLabel}
       sections={[

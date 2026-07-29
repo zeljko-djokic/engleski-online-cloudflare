@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   Arrow,
   ContactSection,
@@ -13,6 +14,12 @@ import { getSiteContent } from "@/lib/site-content";
 import { getApprovedTestimonials } from "@/lib/testimonials";
 
 const SITE_URL = "https://engleski-online.zeljko-d-djokic.workers.dev";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 function extractEuroPrice(value: string): string | undefined {
   return value.replace(",", ".").match(/\d+(?:\.\d+)?/)?.[0];
@@ -166,6 +173,14 @@ export default async function Home() {
               <span className="accent-dot">.</span>
             </h1>
             <p className="hero-lede">{hero.lede}</p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="#kontakt">
+                {hero.primaryCta} <Arrow />
+              </a>
+              <a className="text-link" href="#programi">
+                {hero.secondaryCta} <Arrow />
+              </a>
+            </div>
           </div>
           <div className="hero-art" aria-hidden="true">
             <div className="paper-note">
@@ -236,17 +251,33 @@ export default async function Home() {
               </Link>
             </div>
             <div className="exam-list">
-              {content.exams.map((exam) => (
-                <a href={`/ispiti/${exam.slug}`} key={exam.slug}>
-                  <ExamBadge
-                    slug={exam.slug}
-                    label={exam.label}
-                    title={exam.title}
-                  />
-                  <h3>{exam.title}</h3>
-                  <p>{exam.summary}</p>
-                </a>
-              ))}
+              <article>
+                <ExamBadge
+                  slug="c1-advanced-cae"
+                  label="Cambridge"
+                  title="C1 Advanced i C2 Proficiency"
+                />
+                <h3>Cambridge English</h3>
+                <p>C1 Advanced (CAE) i C2 Proficiency (CPE)</p>
+              </article>
+              <article>
+                <ExamBadge
+                  slug="ielts"
+                  label="Academic English"
+                  title="IELTS i TOEFL"
+                />
+                <h3>IELTS i TOEFL</h3>
+                <p>Priprema prema ciljnom rezultatu i roku do polaganja.</p>
+              </article>
+              <article>
+                <ExamBadge
+                  slug="sat"
+                  label="College admission"
+                  title="SAT English"
+                />
+                <h3>SAT English</h3>
+                <p>Reading and Writing deo digitalnog SAT ispita.</p>
+              </article>
             </div>
           </div>
         </section>

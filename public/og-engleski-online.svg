@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
   <title id="title">Engleski Online — Željko Đokić</title>
-  <desc id="description">Individualna nastava, međunarodni ispiti i jezičke usluge.</desc>
+  <desc id="description">Online nastava, priprema za međunarodne ispite i jezičke usluge.</desc>
   <rect width="1200" height="630" fill="#f4efe6"/>
   <path d="M0 0h18v630H0z" fill="#3559b7"/>
   <path d="M0 564h1200v66H0z" fill="#12263a"/>
@@ -10,7 +10,7 @@
   <text x="1085" y="305" text-anchor="middle" fill="#d76b4b" opacity=".28" font-family="Georgia, serif" font-size="145">g</text>
   <text x="84" y="90" fill="#3559b7" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="5">ONLINE NASTAVA I JEZIČKE USLUGE</text>
   <text x="80" y="235" fill="#12263a" font-family="Georgia, serif" font-size="94" letter-spacing="-4">Engleski Online</text>
-  <text x="84" y="300" fill="#12263a" font-family="Arial, sans-serif" font-size="30">Individualna nastava · Međunarodni ispiti</text>
+  <text x="84" y="300" fill="#12263a" font-family="Arial, sans-serif" font-size="30">Online nastava · Priprema za međunarodne ispite</text>
   <text x="84" y="345" fill="#12263a" font-family="Arial, sans-serif" font-size="30">Prevođenje · Lektura i korektura</text>
   <line x1="84" y1="402" x2="690" y2="402" stroke="#b7b1a8" stroke-width="2"/>
   <text x="84" y="459" fill="#3559b7" font-family="Arial, sans-serif" font-size="26" font-weight="700">Željko Đokić</text>

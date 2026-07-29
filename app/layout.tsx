@@ -21,9 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
       "prevod engleski srpski",
       "Željko Đokić",
     ],
-    alternates: {
-      canonical: "/",
-    },
     openGraph: {
       title: content.seo.shareTitle,
       description: content.seo.shareDescription,

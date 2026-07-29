@@ -81,7 +81,10 @@ export function TestimonialForm({
       </label>
       <label className="testimonial-consent">
         <input name="consent" type="checkbox" value="yes" required />
-        <span>{content.consentLabel}</span>
+        <span>
+          {content.consentLabel}{" "}
+          <a href="/politika-privatnosti">Pročitajte Politiku privatnosti.</a>
+        </span>
       </label>
       <button type="submit" disabled={status === "sending"}>
         {status === "sending" ? "Slanje..." : content.submitLabel}

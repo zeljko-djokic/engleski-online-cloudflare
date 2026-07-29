@@ -3,8 +3,12 @@ import { CatalogIndex } from "@/components/catalog-pages";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Međunarodni ispiti | Engleski Online",
-  description: "Individualna priprema za Cambridge C1 i C2, IELTS, TOEFL i SAT English.",
+  title: "Priprema za međunarodne ispite | Engleski Online",
+  description:
+    "Individualna online priprema za Cambridge C1 Advanced i C2 Proficiency, IELTS, TOEFL i SAT English.",
+  alternates: {
+    canonical: "/ispiti",
+  },
 };
 
 export default async function ExamsPage() {

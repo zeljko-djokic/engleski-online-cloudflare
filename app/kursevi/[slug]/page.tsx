@@ -10,7 +10,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const content = await getSiteContent();
   const program = content.programs.find((item) => item.slug === slug);
   return program
-    ? { title: `${program.title} | ${content.labels.brandName}`, description: program.summary }
+    ? {
+        title: `${program.title} | ${content.labels.brandName}`,
+        description: program.summary,
+        alternates: { canonical: `/kursevi/${program.slug}` },
+      }
     : {};
 }
 

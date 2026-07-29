@@ -5,6 +5,9 @@ import { getSiteContent } from "@/lib/site-content";
 export const metadata: Metadata = {
   title: "Prevođenje, lektura i redaktura | Engleski Online",
   description: "EN–SR prevođenje, lektura, korektura, redaktura i usmeno prevođenje.",
+  alternates: {
+    canonical: "/usluge",
+  },
 };
 
 export default async function ServicesPage() {

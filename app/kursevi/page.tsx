@@ -3,9 +3,12 @@ import { CatalogIndex } from "@/components/catalog-pages";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = {
-  title: "Online kursevi engleskog | Engleski Online",
+  title: "Online nastava engleskog jezika | Engleski Online",
   description:
     "Individualni programi opšteg, poslovnog i stručnog engleskog, prilagođeni vašem nivou, cilju i rasporedu.",
+  alternates: {
+    canonical: "/kursevi",
+  },
 };
 
 export default async function CoursesPage() {

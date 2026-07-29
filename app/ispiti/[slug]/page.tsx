@@ -9,7 +9,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const content = await getSiteContent();
   const exam = content.exams.find((item) => item.slug === slug);
-  return exam ? { title: `${exam.title} priprema | ${content.labels.brandName}`, description: exam.summary } : {};
+  return exam
+    ? {
+        title: `${exam.title} priprema | ${content.labels.brandName}`,
+        description: exam.summary,
+        alternates: { canonical: `/ispiti/${exam.slug}` },
+      }
+    : {};
 }
 
 export default async function ExamDetailPage({ params }: Props) {

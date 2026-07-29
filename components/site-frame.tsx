@@ -97,12 +97,7 @@ export function ContactSection({ content }: { content: SiteContent }) {
             >
               {global.calendarLabel} <Arrow />
             </a>
-          ) : (
-            <div className="calendar-placeholder">
-              <span>{labels.calendarProviderLabel}</span>
-              <strong>{contact.calendarPlaceholder}</strong>
-            </div>
-          )}
+          ) : null}
         </div>
         <div className="contact-actions">
           <a
@@ -147,7 +142,12 @@ export function SiteFooter({ content }: { content: SiteContent }) {
             {labels.brandName}
           </Link>
           <p>{labels.footerTagline}</p>
-          <p>{labels.footerCopyright}</p>
+          <div className="footer-legal">
+            <Link href="/politika-privatnosti">
+              {labels.privacyPolicyLabel}
+            </Link>
+            <p>{labels.footerCopyright}</p>
+          </div>
         </div>
       </footer>
       <nav className="mobile-sticky-cta" aria-label="Brzi kontakt">
