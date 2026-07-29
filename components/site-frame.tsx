@@ -54,13 +54,7 @@ export function SiteHeader({ content }: { content: SiteContent }) {
           </Link>
           <nav className="desktop-nav" aria-label="Glavna navigacija">
             <Link href="/">{labels.navigationHome}</Link>
-            <div className="nav-dropdown">
-              <Link href="/kursevi">{labels.navigationCourses}</Link>
-              <div className="nav-submenu">
-                <Link href="/kursevi">{labels.navigationCoursePrograms}</Link>
-                <Link href="/ispiti">{labels.navigationExams}</Link>
-              </div>
-            </div>
+            <Link href="/kursevi">{labels.navigationCourses}</Link>
             <Link href="/usluge">{labels.navigationServices}</Link>
             <Link href="/cenovnik">{labels.navigationPricing}</Link>
             <Link href="/#o-meni">{labels.navigationAbout}</Link>
@@ -73,11 +67,7 @@ export function SiteHeader({ content }: { content: SiteContent }) {
           <details className="mobile-menu">
             <summary>{labels.mobileMenu}</summary>
             <nav aria-label="Mobilna navigacija">
-              <details className="mobile-submenu">
-                <summary>{labels.navigationCourses}</summary>
-                <Link href="/kursevi">{labels.navigationCoursePrograms}</Link>
-                <Link href="/ispiti">{labels.navigationExams}</Link>
-              </details>
+              <Link href="/kursevi">{labels.navigationCourses}</Link>
               <Link href="/usluge">{labels.navigationServices}</Link>
               <Link href="/cenovnik">{labels.navigationPricing}</Link>
               <Link href="/#o-meni">{labels.navigationAbout}</Link>

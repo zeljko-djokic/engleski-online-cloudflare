@@ -19,13 +19,22 @@ export default async function CoursesPage() {
       eyebrow={content.home.programsEyebrow}
       title={content.home.programsHeadline}
       intro={content.home.programsIntro}
-      cards={content.programs.map((program) => ({
-        href: `/kursevi/${program.slug}`,
-        label: program.number,
-        title: program.title,
-        text: program.summary,
-        meta: `${program.meta} · ${program.price}`,
-      }))}
+      cards={[
+        ...content.programs.map((program) => ({
+          href: `/kursevi/${program.slug}`,
+          label: program.number,
+          title: program.title,
+          text: program.summary,
+          meta: `${program.meta} · ${program.price}`,
+        })),
+        {
+          href: "/ispiti",
+          label: "04",
+          title: content.home.examsHeadline,
+          text: content.home.examsIntro,
+          meta: "Cambridge C1/C2 · IELTS · TOEFL · SAT",
+        },
+      ]}
     />
   );
 }
