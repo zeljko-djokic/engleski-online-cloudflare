@@ -235,7 +235,9 @@ export default async function Home() {
         <section className="section exam-section" id="ispiti">
           <div className="shell exam-layout">
             <div className="exam-intro">
-              <p className="eyebrow">{home.examsEyebrow}</p>
+              {home.examsEyebrow && (
+                <p className="eyebrow">{home.examsEyebrow}</p>
+              )}
               <h2>{home.examsHeadline}</h2>
               <p>{home.examsIntro}</p>
               <Link className="text-link" href="/ispiti">
@@ -243,7 +245,10 @@ export default async function Home() {
               </Link>
             </div>
             <div className="exam-list">
-              <article>
+              <Link
+                href="/ispiti#cambridge"
+                aria-label="Pogledajte programe pripreme za Cambridge C1 Advanced i C2 Proficiency"
+              >
                 <ExamBadge
                   slug="c1-advanced-cae"
                   label="Cambridge"
@@ -251,8 +256,11 @@ export default async function Home() {
                 />
                 <h3>Cambridge English</h3>
                 <p>C1 Advanced (CAE) i C2 Proficiency (CPE)</p>
-              </article>
-              <article>
+              </Link>
+              <Link
+                href="/ispiti/ielts"
+                aria-label="Pogledajte opis pripreme za IELTS"
+              >
                 <ExamBadge
                   slug="ielts"
                   label="Academic English"
@@ -260,8 +268,11 @@ export default async function Home() {
                 />
                 <h3>IELTS</h3>
                 <p>Priprema prema ciljnom rezultatu i roku do polaganja.</p>
-              </article>
-              <article>
+              </Link>
+              <Link
+                href="/ispiti/toefl"
+                aria-label="Pogledajte opis pripreme za TOEFL"
+              >
                 <ExamBadge
                   slug="toefl"
                   label="Academic English"
@@ -269,8 +280,11 @@ export default async function Home() {
                 />
                 <h3>TOEFL</h3>
                 <p>Akademski engleski i strategija za TOEFL iBT.</p>
-              </article>
-              <article>
+              </Link>
+              <Link
+                href="/ispiti/sat"
+                aria-label="Pogledajte opis pripreme za SAT English"
+              >
                 <ExamBadge
                   slug="sat"
                   label="College admission"
@@ -278,7 +292,7 @@ export default async function Home() {
                 />
                 <h3>SAT English</h3>
                 <p>Reading and Writing deo digitalnog SAT ispita.</p>
-              </article>
+              </Link>
             </div>
           </div>
         </section>

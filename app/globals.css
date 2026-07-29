@@ -1862,6 +1862,7 @@ summary:focus-visible {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   flex-direction: column;
+  scroll-margin-top: 110px;
   transition: background-color 180ms ease-out, transform 180ms ease-out;
 }
 

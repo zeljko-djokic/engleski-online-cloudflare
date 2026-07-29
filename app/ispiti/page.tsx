@@ -21,6 +21,7 @@ export default async function ExamsPage() {
       intro={content.home.examsIntro}
       cards={content.exams.map((exam) => ({
         href: `/ispiti/${exam.slug}`,
+        id: exam.slug === "c1-advanced-cae" ? "cambridge" : undefined,
         label: exam.label,
         title: exam.title,
         text: exam.summary,

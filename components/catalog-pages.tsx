@@ -9,6 +9,7 @@ import type { SiteContent } from "@/lib/content-model";
 
 type CatalogCard = {
   href: string;
+  id?: string;
   label: string;
   title: string;
   text: string;
@@ -41,7 +42,12 @@ export function CatalogIndex({
         <section className="catalog-section">
           <div className="shell catalog-grid">
             {cards.map((card, index) => (
-              <a className="catalog-card" href={card.href} key={card.href}>
+              <a
+                className="catalog-card"
+                href={card.href}
+                id={card.id}
+                key={card.href}
+              >
                 {card.badgeSlug ? (
                   <ExamBadge
                     slug={card.badgeSlug}

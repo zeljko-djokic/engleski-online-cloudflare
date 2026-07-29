@@ -208,7 +208,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 12,
+  schemaVersion: 13,
   seo: {
     pageTitle:
       "Online nastava i priprema za međunarodne ispite | Željko Đokić",
@@ -316,7 +316,7 @@ export const defaultContent: SiteContent = {
       "Od opšteg i stručnog engleskog do međunarodnih ispita.",
     programsIntro:
       "Kursevi i specijalizovana priprema predstavljaju dve grane iste individualne online nastave, oblikovane prema vašem nivou, cilju i rasporedu.",
-    examsEyebrow: "Specijalizovani programi",
+    examsEyebrow: "",
     examsHeadline: "Priprema za međunarodne ispite",
     examsIntro:
       "Individualna online priprema za Cambridge C1 Advanced i C2 Proficiency, IELTS, TOEFL i SAT, uz dijagnostiku, plan rada, probne zadatke i preciznu povratnu informaciju.",

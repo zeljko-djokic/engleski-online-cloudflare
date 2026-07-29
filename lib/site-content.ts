@@ -296,6 +296,21 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 12;
   }
 
+  if (version < 13) {
+    source.home = {
+      ...(
+        source.home &&
+        typeof source.home === "object" &&
+        !Array.isArray(source.home)
+          ? (source.home as Record<string, unknown>)
+          : {}
+      ),
+      examsEyebrow: defaultContent.home.examsEyebrow,
+    };
+
+    source.schemaVersion = 13;
+  }
+
   return source;
 }
 
