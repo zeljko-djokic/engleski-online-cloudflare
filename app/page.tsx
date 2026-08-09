@@ -368,9 +368,20 @@ export default async function Home() {
               <p className="eyebrow">{content.testimonials.eyebrow}</p>
               <h2>{content.testimonials.headline}</h2>
               <p>{content.testimonials.intro}</p>
+              <nav
+                className="testimonials-jump-links"
+                aria-label="Prečice u odeljku Utisci"
+              >
+                <a href="#objavljeni-utisci">Pročitajte utiske <span aria-hidden="true">↓</span></a>
+                <a href="#ostavite-utisak">Ostavite utisak <span aria-hidden="true">↓</span></a>
+              </nav>
             </div>
             <div className="testimonials-layout">
-              <div className="testimonial-list" aria-live="polite">
+              <div
+                className="testimonial-list"
+                id="objavljeni-utisci"
+                aria-live="polite"
+              >
                 {testimonials.length > 0 ? (
                   testimonials.map((testimonial) => (
                     <figure className="testimonial-card" key={testimonial.id}>

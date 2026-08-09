@@ -52,12 +52,17 @@ export function TestimonialForm({
   }
 
   return (
-    <form className="testimonial-form" onSubmit={submit}>
+    <form
+      className="testimonial-form"
+      id="ostavite-utisak"
+      aria-labelledby="testimonial-form-title"
+      onSubmit={submit}
+    >
       <div className="testimonial-form-heading">
-        <h3>{content.formTitle}</h3>
+        <h3 id="testimonial-form-title">{content.formTitle}</h3>
         <p>{content.formIntro}</p>
       </div>
-      <label>
+      <label className="testimonial-field testimonial-field-name">
         <span>{content.nameLabel}</span>
         <input
           name="name"
@@ -67,11 +72,11 @@ export function TestimonialForm({
           required
         />
       </label>
-      <label>
+      <label className="testimonial-field testimonial-field-context">
         <span>{content.contextLabel}</span>
         <input name="context" maxLength={120} />
       </label>
-      <label>
+      <label className="testimonial-field testimonial-field-quote">
         <span>{content.quoteLabel}</span>
         <textarea name="quote" minLength={20} maxLength={1200} rows={6} required />
       </label>
