@@ -2334,6 +2334,12 @@ summary:focus-visible {
   color: var(--muted);
 }
 
+.editor-header small {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
 .editor-header-actions {
   display: flex;
   flex-shrink: 0;
@@ -2346,30 +2352,195 @@ summary:focus-visible {
   border-bottom: 1px solid currentColor;
 }
 
-.editor-jump {
+.editor-map {
   position: sticky;
-  top: 12px;
-  z-index: 20;
+  top: 0;
+  z-index: 30;
+  margin-bottom: 52px;
+  padding: 18px;
+  background: rgba(250, 247, 241, 0.97);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 45px rgba(18, 38, 58, 0.1);
+  backdrop-filter: blur(18px);
+}
+
+.editor-map-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+  margin-bottom: 16px;
+  gap: 32px;
+  align-items: end;
+}
+
+.editor-map-heading h2 {
+  margin: 3px 0 0;
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 3vw, 2.55rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.editor-map-heading > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.editor-jump {
   display: flex;
-  margin-bottom: 26px;
-  padding: 12px;
-  background: rgba(18, 38, 58, 0.96);
-  color: white;
   gap: 8px;
   overflow-x: auto;
 }
 
 .editor-jump a {
-  padding: 7px 11px;
+  padding: 9px 12px;
   white-space: nowrap;
   font-size: 0.84rem;
-  font-weight: 700;
+  font-weight: 800;
+}
+
+.editor-jump-primary {
+  padding: 10px;
+  background: rgba(18, 38, 58, 0.98);
+  color: white;
+}
+
+.editor-jump-primary a:hover,
+.editor-jump-primary a:focus-visible {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.editor-jump-secondary {
+  padding: 10px 10px 0;
+  color: var(--cobalt);
+  align-items: center;
+}
+
+.editor-jump-secondary span {
+  padding-inline: 3px 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.editor-jump-secondary a {
+  border: 1px solid rgba(53, 89, 183, 0.28);
+}
+
+.editor-content {
+  display: grid;
+  gap: 66px;
+}
+
+.editor-area {
+  scroll-margin-top: 220px;
+}
+
+.editor-area-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-bottom: 20px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid var(--ink);
+  gap: 28px;
+  align-items: end;
+}
+
+.editor-area-heading h2 {
+  margin: 4px 0 8px;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 5vw, 4.7rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.editor-area-heading p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.editor-area-heading > a,
+.editor-subarea-heading > a {
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  color: var(--cobalt);
+  font-size: 0.84rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.editor-area-kicker {
+  color: var(--cobalt) !important;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.editor-subarea-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin: 34px 0 16px;
+  padding: 22px 24px;
+  background: var(--ink);
+  color: white;
+  gap: 20px;
+  align-items: center;
+  scroll-margin-top: 220px;
+}
+
+.editor-subarea-heading > span {
+  min-width: 52px;
+  color: #9fb6ff;
+  font-family: var(--display);
+  font-size: 2rem;
+}
+
+.editor-subarea-heading h3,
+.editor-subarea-heading p {
+  margin: 0;
+}
+
+.editor-subarea-heading h3 {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.editor-subarea-heading p {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.86rem;
+}
+
+.editor-subarea-heading > a {
+  color: white;
+}
+
+.editor-settings-area {
+  padding: 28px;
+  background: rgba(53, 89, 183, 0.045);
+  border: 1px solid rgba(53, 89, 183, 0.2);
 }
 
 .editor-section {
   margin-bottom: 16px;
   background: var(--paper-light);
   border: 1px solid var(--line);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.editor-section:hover {
+  border-color: rgba(53, 89, 183, 0.38);
+}
+
+.editor-section[open] {
+  box-shadow: 0 14px 35px rgba(18, 38, 58, 0.06);
 }
 
 .editor-section > summary {
@@ -2446,6 +2617,45 @@ summary:focus-visible {
 
 .editor-field small {
   color: var(--muted);
+}
+
+.editor-calendar-status {
+  display: flex;
+  margin-bottom: 24px;
+  padding: 16px 18px;
+  border-left: 4px solid;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.editor-calendar-status > div {
+  display: grid;
+  gap: 3px;
+}
+
+.editor-calendar-status span {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.editor-calendar-status a {
+  border-bottom: 1px solid currentColor;
+  font-size: 0.82rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.editor-calendar-status.is-ready {
+  background: #e8f5ec;
+  border-color: #2e7950;
+  color: #205d3b;
+}
+
+.editor-calendar-status.is-empty {
+  background: #fff4d8;
+  border-color: #b57b12;
+  color: #78540e;
 }
 
 .editor-list {
@@ -2747,6 +2957,20 @@ summary:focus-visible {
     margin-top: 24px;
   }
 
+  .editor-map-heading,
+  .editor-area-heading {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .editor-map-heading {
+    gap: 10px;
+  }
+
+  .editor-area-heading > a {
+    width: fit-content;
+  }
+
   .editor-faq {
     grid-template-columns: 1fr;
   }
@@ -2803,6 +3027,56 @@ summary:focus-visible {
     padding-top: 30px;
   }
 
+  .editor-header h1 {
+    font-size: clamp(3.1rem, 16vw, 5.3rem);
+  }
+
+  .editor-map {
+    position: static;
+    margin-bottom: 40px;
+    padding: 14px;
+  }
+
+  .editor-map-heading {
+    margin-bottom: 12px;
+  }
+
+  .editor-jump {
+    margin-inline: -4px;
+  }
+
+  .editor-jump-secondary {
+    padding-top: 8px;
+  }
+
+  .editor-content {
+    gap: 52px;
+  }
+
+  .editor-area {
+    scroll-margin-top: 20px;
+  }
+
+  .editor-area-heading h2 {
+    font-size: clamp(2.55rem, 14vw, 4rem);
+  }
+
+  .editor-settings-area {
+    margin-inline: -4px;
+    padding: 18px 12px;
+  }
+
+  .editor-subarea-heading {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 18px;
+    scroll-margin-top: 20px;
+  }
+
+  .editor-subarea-heading > a {
+    grid-column: 2;
+    width: fit-content;
+  }
+
   .editor-grid,
   .editor-pair {
     grid-template-columns: 1fr;
@@ -2825,6 +3099,15 @@ summary:focus-visible {
 
   .editor-section > summary small {
     text-align: left;
+  }
+
+  .editor-section-body {
+    padding: 24px 16px 28px;
+  }
+
+  .editor-calendar-status {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .editor-savebar {
