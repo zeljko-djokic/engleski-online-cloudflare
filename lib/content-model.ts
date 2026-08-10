@@ -208,7 +208,7 @@ export type SiteContent = {
 };
 
 export const defaultContent: SiteContent = {
-  schemaVersion: 13,
+  schemaVersion: 14,
   seo: {
     pageTitle:
       "Online nastava i priprema za međunarodne ispite | Željko Đokić",
@@ -372,7 +372,7 @@ export const defaultContent: SiteContent = {
       summary:
         "Od sigurnije svakodnevne komunikacije do naprednog, preciznog izražavanja — program prati vaš nivo i tempo.",
       meta: "A1–C2 · 60 min",
-      price: "15 €",
+      price: "18 €",
       eyebrow: "Individualni program · A1–C2",
       headline: "Engleski za svakodnevni život, putovanja i lični napredak.",
       intro:
@@ -403,7 +403,7 @@ export const defaultContent: SiteContent = {
       summary:
         "Sastanci, prezentacije, poslovna korespondencija i vokabular koji odmah primenjujete u svom poslu.",
       meta: "Individualni program · 60 min",
-      price: "17 €",
+      price: "20 €",
       eyebrow: "Engleski za profesionalno okruženje",
       headline: "Komunicirajte jasno, sigurno i profesionalno.",
       intro:
@@ -434,7 +434,7 @@ export const defaultContent: SiteContent = {
       summary:
         "Jezik medicine, farmacije, IT-ja, prava i drugih stručnih oblasti, uz materijale prilagođene profesiji.",
       meta: "Stručna terminologija · 60 min",
-      price: "17 €",
+      price: "20 €",
       eyebrow: "Engleski za struku i akademsko okruženje",
       headline: "Predstavite svoju stručnost precizno i bez jezičke barijere.",
       intro:
@@ -479,7 +479,7 @@ export const defaultContent: SiteContent = {
         "Dijagnostički test i individualni plan",
         "Detaljno ocenjivanje pisanih radova prema Cambridge kriterijumima",
         "Probni testovi i praćenje rezultata",
-        "Cena: 17 € za 60 minuta",
+        "Cena: 20 € za 60 minuta",
       ],
     },
     {
@@ -501,7 +501,7 @@ export const defaultContent: SiteContent = {
         "Individualni plan prema datumu ispita",
         "Rad sa zahtevnim autentičnim i ispitnim materijalima",
         "Detaljna korekcija i povratna informacija",
-        "Cena: 17 € za 60 minuta",
+        "Cena: 20 € za 60 minuta",
       ],
     },
     {
@@ -523,7 +523,7 @@ export const defaultContent: SiteContent = {
         "Početna procena i realna procena potrebnog vremena",
         "Redovni zadaci ocenjeni prema IELTS descriptorima",
         "Probni delovi ispita i analiza slabijih oblasti",
-        "Cena: 17 € za 60 minuta",
+        "Cena: 20 € za 60 minuta",
       ],
     },
     {
@@ -545,7 +545,7 @@ export const defaultContent: SiteContent = {
         "Individualni plan prema ciljnom broju bodova",
         "Rad u digitalnom formatu",
         "Simulacije i analiza učinka",
-        "Cena: 17 € za 60 minuta",
+        "Cena: 20 € za 60 minuta",
       ],
     },
     {
@@ -567,7 +567,7 @@ export const defaultContent: SiteContent = {
         "Početna dijagnostika po domenima",
         "Plan vežbanja prema slabijim oblastima",
         "Digitalni zadaci i rad na vremenu",
-        "Cena: 17 € za 60 minuta",
+        "Cena: 20 € za 60 minuta",
       ],
     },
   ],
@@ -653,9 +653,9 @@ export const defaultContent: SiteContent = {
   ],
   pricing: {
     generalLessonLabel: "Opšti kurs",
-    generalLessonPrice: "15 €",
-    specializedLessonLabel: "Specijalizovani kurs",
-    specializedLessonPrice: "17 €",
+    generalLessonPrice: "18 €",
+    specializedLessonLabel: "Poslovni / stručni engleski",
+    specializedLessonPrice: "20 €",
     lessonBenefits: [
       "Materijali uključeni",
       "Procena nivoa i plan rada",

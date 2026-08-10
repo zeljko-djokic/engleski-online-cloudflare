@@ -486,8 +486,8 @@ export function Editor({
             <div className="editor-grid">
               <Field label="Naziv opšteg kursa" value={content.pricing.generalLessonLabel} onChange={(value) => updateContent((draft) => { draft.pricing.generalLessonLabel = value; })} />
               <Field label="Cena opšteg kursa" value={content.pricing.generalLessonPrice} onChange={(value) => updateContent((draft) => { draft.pricing.generalLessonPrice = value; })} />
-              <Field label="Naziv specijalizovanog kursa" value={content.pricing.specializedLessonLabel} onChange={(value) => updateContent((draft) => { draft.pricing.specializedLessonLabel = value; })} />
-              <Field label="Cena specijalizovanog kursa" value={content.pricing.specializedLessonPrice} onChange={(value) => updateContent((draft) => { draft.pricing.specializedLessonPrice = value; })} />
+              <Field label="Naziv poslovnog / stručnog engleskog" value={content.pricing.specializedLessonLabel} onChange={(value) => updateContent((draft) => { draft.pricing.specializedLessonLabel = value; })} />
+              <Field label="Cena poslovnog / stručnog engleskog" value={content.pricing.specializedLessonPrice} onChange={(value) => updateContent((draft) => { draft.pricing.specializedLessonPrice = value; })} />
               <Field label="Trajanje časa" value={content.pricing.duration} onChange={(value) => updateContent((draft) => { draft.pricing.duration = value; })} />
               <Field label="Popust za paket" value={content.pricing.packageDiscount} onChange={(value) => updateContent((draft) => { draft.pricing.packageDiscount = value; })} />
               <Field label="Opis paketa" value={content.pricing.packageDescription} multiline onChange={(value) => updateContent((draft) => { draft.pricing.packageDescription = value; })} />

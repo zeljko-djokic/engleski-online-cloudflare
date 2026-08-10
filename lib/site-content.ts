@@ -311,6 +311,63 @@ function migrateLegacyContent(value: unknown): unknown {
     source.schemaVersion = 13;
   }
 
+  if (version < 14) {
+    if (Array.isArray(source.programs)) {
+      source.programs = source.programs.map((item) => {
+        if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+        const program = { ...(item as Record<string, unknown>) };
+
+        if (program.slug === "opsti-engleski") {
+          program.price = "18 €";
+        }
+
+        if (
+          program.slug === "poslovni-engleski" ||
+          program.slug === "strucni-engleski"
+        ) {
+          program.price = "20 €";
+        }
+
+        return program;
+      });
+    }
+
+    if (Array.isArray(source.exams)) {
+      source.exams = source.exams.map((item) => {
+        if (!item || typeof item !== "object" || Array.isArray(item)) return item;
+        const exam = { ...(item as Record<string, unknown>) };
+        const format = Array.isArray(exam.format)
+          ? exam.format.filter(
+              (entry) =>
+                !(
+                  typeof entry === "string" &&
+                  entry.trim().toLowerCase().startsWith("cena:")
+                ),
+            )
+          : [];
+
+        exam.format = [...format, "Cena: 20 € za 60 minuta"];
+        return exam;
+      });
+    }
+
+    source.pricing = {
+      ...(
+        source.pricing &&
+        typeof source.pricing === "object" &&
+        !Array.isArray(source.pricing)
+          ? (source.pricing as Record<string, unknown>)
+          : {}
+      ),
+      generalLessonPrice: "18 €",
+      specializedLessonLabel: "Poslovni / stručni engleski",
+      specializedLessonPrice: "20 €",
+      duration: "60 minuta",
+    };
+
+    source.schemaVersion = 14;
+  }
+
   return source;
 }
 
