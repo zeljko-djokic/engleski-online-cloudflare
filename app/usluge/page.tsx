@@ -18,13 +18,21 @@ export default async function ServicesPage() {
       eyebrow={content.home.servicesEyebrow}
       title={content.home.servicesHeadline}
       intro={content.home.servicesIntro}
-      cards={content.services.map((service) => ({
-        href: `/usluge/${service.slug}`,
-        label: service.number,
-        title: service.title,
-        text: service.summary,
-        meta: `${service.price} ${service.unit}`,
-      }))}
+      cards={[
+        ...content.services.map((service) => ({
+          href: `/usluge/${service.slug}`,
+          label: service.number,
+          title: service.title,
+          text: service.summary,
+          meta: `${service.price} ${service.unit}`,
+        })),
+        {
+          href: "/portfolio-prevoda",
+          label: "PORTFOLIO",
+          title: "Portfolio prevoda",
+          text: "Primeri prevoda i pregled dosadašnjih projekata po oblastima i klijentima.",
+        },
+      ]}
     />
   );
 }

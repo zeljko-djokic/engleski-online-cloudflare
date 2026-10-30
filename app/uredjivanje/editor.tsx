@@ -155,6 +155,17 @@ export function Editor({
   const [message, setMessage] = useState("");
   const [reviewingId, setReviewingId] = useState<number | null>(null);
   const [reviewMessage, setReviewMessage] = useState("");
+  const [portfolioSearch, setPortfolioSearch] = useState("");
+  const [portfolioLimit, setPortfolioLimit] = useState(20);
+
+  const portfolioMatches = content.portfolio
+    .map((entry, index) => ({ entry, index }))
+    .filter(({ entry }) =>
+      [entry.name, entry.title, entry.client, entry.category, entry.year]
+        .join(" ")
+        .toLocaleLowerCase("sr")
+        .includes(portfolioSearch.toLocaleLowerCase("sr").trim()),
+    );
 
   const markChanged = () => {
     setStatus("idle");
@@ -268,6 +279,7 @@ export function Editor({
           <a href="#pocetna-urednik">{content.labels.navigationHome}</a>
           <a href="#online-nastava-urednik">{content.labels.navigationCourses}</a>
           <a href="#usluge-urednik">{content.labels.navigationServices}</a>
+          <a href="#portfolio-urednik">Portfolio prevoda</a>
           <a href="#cenovnik-urednik">{content.labels.navigationPricing}</a>
           <a href="#o-meni-urednik">{content.labels.navigationAbout}</a>
           <a href="#utisci-urednik">{content.labels.navigationTestimonials}</a>
@@ -467,6 +479,50 @@ export function Editor({
               <ListField label="Tok saradnje" value={service.process} onChange={(value) => setService(index, { ...service, process: value })} />
             </EditorSection>
           ))}
+          <div id="portfolio-urednik">
+            <EditorSection
+              title="Portfolio prevoda"
+              description="Pretražite, izmenite, dodajte ili uklonite zapise u javnom pregledu."
+            >
+              <p className="portfolio-editor-note">
+                Prikazuju se podaci namenjeni javnom sajtu. Za privatne klijente navedite samo vrstu dokumenta.
+                Izvorni dokumenti i interna evidencija ne objavljuju se ovde.
+              </p>
+              <Field
+                label="Pretražite zapise"
+                value={portfolioSearch}
+                onChange={(value) => { setPortfolioSearch(value); setPortfolioLimit(20); }}
+                placeholder="Naziv, klijent, oblast ili godina"
+              />
+              <p className="portfolio-editor-note">Pronađeno: {portfolioMatches.length}. Prikazano: {Math.min(portfolioLimit, portfolioMatches.length)}.</p>
+              {portfolioMatches.slice(0, portfolioLimit).map(({ entry, index }) => (
+                <details className="editor-section" key={entry.id}>
+                  <summary><span>{entry.title || entry.name || "Novi zapis"}</span><small>{entry.client} · {entry.year}</small></summary>
+                  <div className="editor-section-body">
+                    <div className="editor-grid">
+                      <Field label="Naziv dokumenta" value={entry.name} onChange={(value) => updateContent((draft) => { draft.portfolio[index].name = value; })} />
+                      <Field label="Opis ili prevedeni naslov" value={entry.title} onChange={(value) => updateContent((draft) => { draft.portfolio[index].title = value; })} />
+                      <Field label="Klijent" value={entry.client} onChange={(value) => updateContent((draft) => { draft.portfolio[index].client = value; })} />
+                      <Field label="Oblast" value={entry.category} onChange={(value) => updateContent((draft) => { draft.portfolio[index].category = value; })} />
+                      <Field label="Godina" value={entry.year} onChange={(value) => updateContent((draft) => { draft.portfolio[index].year = value; })} />
+                      <Field label="Vrsta posla" value={entry.status} onChange={(value) => updateContent((draft) => { draft.portfolio[index].status = value; })} hint="Na primer: Prevod u arhivi, Revizija ili Korektura." />
+                    </div>
+                    <button type="button" className="danger" onClick={() => updateContent((draft) => { draft.portfolio.splice(index, 1); })}>Ukloni zapis</button>
+                  </div>
+                </details>
+              ))}
+              {portfolioMatches.length > portfolioLimit && (
+                <button className="editor-add" type="button" onClick={() => setPortfolioLimit((limit) => limit + 20)}>Prikaži još zapisa</button>
+              )}
+              <button className="editor-add" type="button" onClick={() => {
+                updateContent((draft) => {
+                  draft.portfolio.unshift({ id: `portfolio-${Date.now()}-${draft.portfolio.length}`, name: "Novi dokument", title: "", year: "", client: "Privatni klijent", category: "Drugo", status: "Prevod u arhivi" });
+                });
+                setPortfolioSearch(""); setPortfolioLimit(20);
+              }}>+ Dodaj zapis</button>
+              <p className="portfolio-editor-note"><a href="/portfolio-prevoda" target="_blank" rel="noreferrer">Pogledajte portfolio na sajtu ↗</a></p>
+            </EditorSection>
+          </div>
         </EditorArea>
 
         <EditorArea

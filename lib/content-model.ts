@@ -1,3 +1,15 @@
+import portfolioDefaults from "@/lib/portfolio-default.json";
+
+export type PortfolioEntry = {
+  id: string;
+  name: string;
+  title: string;
+  year: string;
+  client: string;
+  category: string;
+  status: string;
+};
+
 export type Program = {
   slug: string;
   number: string;
@@ -60,6 +72,7 @@ export type TestimonialSectionContent = {
 
 export type SiteContent = {
   schemaVersion: number;
+  portfolio: PortfolioEntry[];
   seo: {
     pageTitle: string;
     metaDescription: string;
@@ -209,6 +222,7 @@ export type SiteContent = {
 
 export const defaultContent: SiteContent = {
   schemaVersion: 14,
+  portfolio: portfolioDefaults,
   seo: {
     pageTitle:
       "Online nastava i priprema za međunarodne ispite | Željko Đokić",

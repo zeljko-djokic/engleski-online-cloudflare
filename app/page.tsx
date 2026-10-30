@@ -335,6 +335,9 @@ export default async function Home() {
               ))}
             </div>
             <p className="service-note">{labels.serviceNote}</p>
+            <p className="portfolio-entry-link">
+              <Link href="/portfolio-prevoda">Pogledajte portfolio prevoda <Arrow /></Link>
+            </p>
           </div>
         </section>
 

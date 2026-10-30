@@ -82,6 +82,7 @@ export function DetailPage({
   asideText,
   backHref,
   backLabel,
+  portfolioLink = false,
 }: {
   content: SiteContent;
   eyebrow: string;
@@ -92,6 +93,7 @@ export function DetailPage({
   asideText?: string;
   backHref: string;
   backLabel: string;
+  portfolioLink?: boolean;
 }) {
   return (
     <>
@@ -105,6 +107,11 @@ export function DetailPage({
           <a className="button button-primary" href="#kontakt">
             {content.labels.detailPrimaryCta} <Arrow />
           </a>
+          {portfolioLink && (
+            <p className="portfolio-entry-link">
+              <a href="/portfolio-prevoda">Pogledajte portfolio prevoda <Arrow /></a>
+            </p>
+          )}
         </section>
         <section className="detail-body">
           <div className="shell detail-layout">

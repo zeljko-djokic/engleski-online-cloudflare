@@ -34,6 +34,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       price={{ label: content.labels.servicePriceLabel, value: `${service.price} ${service.unit}` }}
       backHref="/usluge"
       backLabel={content.labels.serviceBackLabel}
+      portfolioLink={service.slug === "prevodjenje"}
       sections={[
         { title: content.labels.serviceIncludesTitle, items: service.includes },
         { title: content.labels.serviceProcessTitle, items: service.process },
