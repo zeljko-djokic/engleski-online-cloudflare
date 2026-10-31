@@ -436,16 +436,6 @@ export default async function Home() {
                 </ul>
                 <a href="#kontakt">{labels.pricingCta} <Arrow /></a>
               </article>
-              <article className="price-card">
-                <p>{labels.pricingPackageLabel}</p>
-                <h3>{pricing.packageDiscount}</h3>
-                <p>{pricing.packageDescription}</p>
-              </article>
-              <article className="price-card">
-                <p>{labels.pricingGroupsLabel}</p>
-                <h3>{pricing.groupDiscount}</h3>
-                <p>{pricing.groupDescription}</p>
-              </article>
               <article className="price-card featured-price">
                 <p>{labels.pricingServicesLabel}</p>
                 <div className="price-pairs service-summary-prices">
@@ -463,6 +453,16 @@ export default async function Home() {
                   )}
                 </div>
                 <p>{pricing.languageServiceDescription}</p>
+              </article>
+              <article className="price-card">
+                <p>{labels.pricingPackageLabel}</p>
+                <h3>{pricing.packageDiscount}</h3>
+                <p>{pricing.packageDescription}</p>
+              </article>
+              <article className="price-card">
+                <p>{labels.pricingGroupsLabel}</p>
+                <h3>{pricing.groupDiscount}</h3>
+                <p>{pricing.groupDescription}</p>
               </article>
             </div>
           </div>

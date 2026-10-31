@@ -1664,13 +1664,63 @@ summary:focus-visible {
     font-size: 8rem;
   }
 
-  .about-facts,
-  .price-grid {
+  .about-facts {
     grid-template-columns: 1fr;
   }
 
+  .price-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .price-card {
-    min-height: 390px;
+    min-width: 0;
+    min-height: 0;
+    padding: 20px 14px;
+    overflow-wrap: anywhere;
+  }
+
+  .price-card > p {
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+  }
+
+  .price-card > p:not(:first-child) {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5;
+    text-transform: none;
+  }
+
+  .price-card h3 {
+    margin: 30px 0 24px;
+    font-size: clamp(1.9rem, 8vw, 3.4rem);
+    line-height: 1.05;
+  }
+
+  .price-pairs {
+    margin: 28px 0 22px;
+    gap: 14px;
+  }
+
+  .price-pairs span {
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+  }
+
+  .price-pairs strong,
+  .service-summary-prices strong {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .price-card li,
+  .price-card > a {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .price-card > a {
+    gap: 6px;
   }
 
   .contact-actions a {
