@@ -341,6 +341,66 @@ export default async function Home() {
           </div>
         </section>
 
+        <section className="section pricing-section" id="cenovnik">
+          <div className="shell">
+            <div className="section-heading pricing-heading">
+              <p className="eyebrow">{home.pricingEyebrow}</p>
+              <h2>{home.pricingHeadline}</h2>
+              <p>{home.pricingIntro}</p>
+            </div>
+            <div className="price-grid">
+              <article className="price-card featured-price">
+                <p>{labels.pricingServicesLabel}</p>
+                <div className="price-pairs service-summary-prices">
+                  {translationService && (
+                    <div>
+                      <span>{translationService.title}</span>
+                      <strong>{translationService.price}</strong>
+                    </div>
+                  )}
+                  {proofreadingService && (
+                    <div>
+                      <span>{proofreadingService.title}</span>
+                      <strong>{proofreadingService.price}</strong>
+                    </div>
+                  )}
+                </div>
+                <p>{pricing.languageServiceDescription}</p>
+              </article>
+              <article className="price-card featured-price">
+                <p>{labels.pricingIndividualLabel}</p>
+                <div className="price-pairs">
+                  <div>
+                    <span>{pricing.generalLessonLabel}</span>
+                    <strong>{pricing.generalLessonPrice}</strong>
+                  </div>
+                  <div>
+                    <span>{pricing.specializedLessonLabel}</span>
+                    <strong>{pricing.specializedLessonPrice}</strong>
+                  </div>
+                </div>
+                <ul>
+                  <li>{pricing.duration}</li>
+                  {pricing.lessonBenefits.map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
+                </ul>
+                <a href="#kontakt">{labels.pricingCta} <Arrow /></a>
+              </article>
+              <article className="price-card">
+                <p>{labels.pricingPackageLabel}</p>
+                <h3>{pricing.packageDiscount}</h3>
+                <p>{pricing.packageDescription}</p>
+              </article>
+              <article className="price-card">
+                <p>{labels.pricingGroupsLabel}</p>
+                <h3>{pricing.groupDiscount}</h3>
+                <p>{pricing.groupDescription}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section className="section about-section" id="o-meni">
           <div className="shell about-layout">
             <div className="about-mark" aria-hidden="true">
@@ -404,66 +464,6 @@ export default async function Home() {
                 )}
               </div>
               <TestimonialForm content={content.testimonials} />
-            </div>
-          </div>
-        </section>
-
-        <section className="section pricing-section" id="cenovnik">
-          <div className="shell">
-            <div className="section-heading pricing-heading">
-              <p className="eyebrow">{home.pricingEyebrow}</p>
-              <h2>{home.pricingHeadline}</h2>
-              <p>{home.pricingIntro}</p>
-            </div>
-            <div className="price-grid">
-              <article className="price-card featured-price">
-                <p>{labels.pricingIndividualLabel}</p>
-                <div className="price-pairs">
-                  <div>
-                    <span>{pricing.generalLessonLabel}</span>
-                    <strong>{pricing.generalLessonPrice}</strong>
-                  </div>
-                  <div>
-                    <span>{pricing.specializedLessonLabel}</span>
-                    <strong>{pricing.specializedLessonPrice}</strong>
-                  </div>
-                </div>
-                <ul>
-                  <li>{pricing.duration}</li>
-                  {pricing.lessonBenefits.map((benefit) => (
-                    <li key={benefit}>{benefit}</li>
-                  ))}
-                </ul>
-                <a href="#kontakt">{labels.pricingCta} <Arrow /></a>
-              </article>
-              <article className="price-card featured-price">
-                <p>{labels.pricingServicesLabel}</p>
-                <div className="price-pairs service-summary-prices">
-                  {translationService && (
-                    <div>
-                      <span>{translationService.title}</span>
-                      <strong>{translationService.price}</strong>
-                    </div>
-                  )}
-                  {proofreadingService && (
-                    <div>
-                      <span>{proofreadingService.title}</span>
-                      <strong>{proofreadingService.price}</strong>
-                    </div>
-                  )}
-                </div>
-                <p>{pricing.languageServiceDescription}</p>
-              </article>
-              <article className="price-card">
-                <p>{labels.pricingPackageLabel}</p>
-                <h3>{pricing.packageDiscount}</h3>
-                <p>{pricing.packageDescription}</p>
-              </article>
-              <article className="price-card">
-                <p>{labels.pricingGroupsLabel}</p>
-                <h3>{pricing.groupDiscount}</h3>
-                <p>{pricing.groupDescription}</p>
-              </article>
             </div>
           </div>
         </section>
